@@ -13,6 +13,11 @@ B_arr = list(map(int, input().split())) # n2 개의 수열
 tf = False
 for index in range(0,n1) :
     if A_arr[index] == B_arr[0] :
+        #에러 처리
+        #A수열의 길이보다 현재 발견된 index로부터 B 수열길이를 더한 것 보다 크거나 같아야함
+        if index+1 + n2 > n1 :
+            continue
+
         for i in range(1, n2) : 
             if A_arr[index + i] != B_arr[i] :
                 break
