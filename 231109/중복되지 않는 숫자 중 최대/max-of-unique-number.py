@@ -31,7 +31,7 @@ if max_num == 0 :
     print(-1)
     sys.exit()
 
-for i in range(1,n) :
+for i in range(n) :
     if arr[i] in duplication_arr or i == index:
         continue
 
