@@ -9,7 +9,7 @@ for i in range(0,n-1) :
     if arr[i] not in duplication_arr:
         for j in range(i+1,n) :
             if arr[i] == arr[j]:
-                duplication_arr.append(i)
+                duplication_arr.append(arr[i])
                 break
 
 max_num = 0
