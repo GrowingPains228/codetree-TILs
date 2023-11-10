@@ -9,7 +9,6 @@ for i in arr_2d :
     new_arr.append(sum(i)/len(i))
 print()
 
-
 #세로 평균
 for i in range(4) : 
     total = 0
@@ -18,4 +17,5 @@ for i in range(4) :
     print(f"{total/2:.1f}", end = " ")
 print()
 
+#전체 평균
 print(f"{sum(new_arr)/len(new_arr):.1f}")
