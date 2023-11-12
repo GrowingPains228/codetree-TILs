@@ -9,8 +9,9 @@ arr_triangle = [
 for i in range(n) :
     arr_triangle[i][0] = 1
 
-for i in range(n) :
-    for j in range(i+1) :
+
+for i in range(1, n) :
+    for j in range(1, i+1) :
         arr_triangle[i][j] = arr_triangle[i-1][j-1] + arr_triangle[i-1][j]
 
 for i in range(n) :
