@@ -8,11 +8,11 @@ for i in range(1, len(A)) :
         new_a.append(A[i-1])
         new_a.append(cnt)
         cnt = 1
-    
+
     if i == len(A) - 1 :
         new_a.append(A[i])
         new_a.append(cnt)
-        cnt = 1
+        break
 
 print(len(new_a))
 for elem in new_a :
