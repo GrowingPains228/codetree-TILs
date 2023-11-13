@@ -19,7 +19,7 @@ len_ee = len("ee")
 len_ab = len("ab")
 
 exits_tf = False
-for i in range(0, len(arr)-len_ee +1) :
+for i in range(len(arr) -1) :
     if in_ee == arr[i:i+len_ee] :
         exits_tf = True
         break
@@ -27,7 +27,7 @@ for i in range(0, len(arr)-len_ee +1) :
 print("Yes" if exits_tf else "No", end = " ")
 
 exits_tf = False
-for i in range(0, len(arr)-len_ab +1) :
+for i in range(len(arr) -1) :
     if in_ab == arr[i:i+len_ab] :
         exits_tf = True
         break
