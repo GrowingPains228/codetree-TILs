@@ -1,18 +1,25 @@
 A = input()
 new_a = []
+
 cnt = 1
-for i in range(1, len(A)) :
-    if A[i-1] == A[i] :
+temp_char = A[0]
+index = 1
+new_a.append(A[0])
+
+while len(A) > index :
+    if temp_char == A[index] :
         cnt += 1
-    else :
-        new_a.append(A[i-1])
+
+    if temp_char != A[index] :
         new_a.append(cnt)
+        temp_char = A[index]
+        new_a.append(temp_char)
         cnt = 1
 
-    if i == len(A) - 1 :
-        new_a.append(A[i])
-        new_a.append(cnt)
-        break
+    index += 1
+
+new_a.append(cnt)
+
 
 print(len(new_a))
 for elem in new_a :
