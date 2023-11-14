@@ -1,13 +1,13 @@
-string = list(input())
+string = input()
+arr = list(string)
 
 while len(string) > 1 :
     index = int(input())
 
-    if index >= len(string) :
-        string.pop(len(string)-1)
+    if index >= len(arr) :
+        arr.pop(len(arr)-1)
     else :
-        string.pop(index)
+        arr.pop(index)
     
-    for elem in string :
-        print(elem, end = "")
-    print()
+    string = ''.join(arr)
+    print(string)
