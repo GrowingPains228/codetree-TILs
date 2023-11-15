@@ -5,6 +5,8 @@ def print_gcd(num1, num2) :
             print(comman_divisor)
             break
 
+        num1 //= i
+        num2 //= i
         comman_divisor *= i
 
 n1, n2 = tuple(map(int, input().split()))
