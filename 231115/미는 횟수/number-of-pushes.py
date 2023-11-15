@@ -9,4 +9,8 @@ while True :
     A = A[-1] + A[:-1]
     cnt += 1
 
+    if cnt > len(A) :
+        cnt = -1
+        break
+
 print(cnt)
