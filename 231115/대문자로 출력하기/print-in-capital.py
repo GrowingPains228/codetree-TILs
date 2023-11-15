@@ -1,4 +1,4 @@
-string = list(input())
+string = input()
 
 for elem in string :
     if elem.isalpha() :
