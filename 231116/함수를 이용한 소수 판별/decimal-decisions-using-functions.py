@@ -10,7 +10,7 @@ def is_prime(number) :
 cnt = 0
 
 for i in range(a,b+1) :
-    if is_prime(i) :
+    if i > 1 and is_prime(i) :
         cnt += i
 
 print(cnt)
