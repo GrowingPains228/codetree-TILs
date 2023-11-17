@@ -34,13 +34,13 @@ def check_MaxDay_About_Month(isLeap, M) :
 # 달(month)에 따른 계절
 def what_season(M) :
     if M >= 3 and M <= 5 :
-        print("Spring")
+        return "Spring"
     elif M >= 6 and M <= 8 :
-        print("Summer")
+        return "Summer"
     elif M >= 9 and M <= 11 :
-        print("Fall")
+        return "Fall"
     else : 
-        print("Winter")
+        return "Winter"
     
 #최종 함수
 def check_month(Y, M, D) : 
@@ -48,9 +48,9 @@ def check_month(Y, M, D) :
     max_days = check_MaxDay_About_Month(is_leap(Y), M)
     # 일수가 범위안에 들어오는 달인지 체크
     if max_days < D :
-        print(-1)
+        return "-1"
 
     #들어왔다면 이제 계절 판별해서 출력
-    what_season(M)
+    return what_season(M)
 
-check_month(Y,M,D)
+print(check_month(Y,M,D))
