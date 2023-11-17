@@ -20,10 +20,11 @@ def is_leap(Y) :
 
 # 달(month)에 따른 최대 일 수
 def check_MaxDay_About_Month(isLeap, M) :
-    if M == 2 and isLeap:
-        return 29
-    else :
-        return 28
+    if M == 2 :
+        if isLeap :
+            return 29
+        else :
+            return 28
 
     if M in (4, 6, 9, 11) :
         return 30
