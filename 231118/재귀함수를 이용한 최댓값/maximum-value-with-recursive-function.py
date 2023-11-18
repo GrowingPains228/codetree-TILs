@@ -5,6 +5,6 @@ def find_max(n) :
     if n <= 0 :
         return arr[0]
     
-    return arr[n] if arr[n] >= find_max(n-1) else find_max(n-1)
+    return max(find_max(n-1), arr[n])
 
 print(find_max(n-1))
