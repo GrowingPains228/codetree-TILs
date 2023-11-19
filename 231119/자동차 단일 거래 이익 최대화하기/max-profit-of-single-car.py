@@ -1,13 +1,20 @@
-# 입력 및 정의 :
 n = int(input())
-arr = list(map(int, input().split()))
+price = list(map(int, input().split()))
 
-# 최대 일때만 갱신해주기.
+# 배열을 앞에서부터 순회하며 최솟값을 갱신함
+# 각 원소에 대하여 해당 시점의 최솟값의 차이가 최대가 될 때를 갱신해줌
 max_benefit = 0
+min_price = price[0]
 
-for i in range(n-1) :
-    for j in range(i,n) :
-        # 이익이 더 크다면 갱신해주기
-        if arr[j]-arr[i] > max_benefit :
-            max_benefit = arr[j]-arr[i]
+for i in range(n) :
+    benefit = price[i] - min_price
+
+    # 이익이 더 있는지 비교
+    if max_benefit < benefit :
+        max_benefit = benefit
+
+    # 현재까지의 최솟값과 비교
+    if price[i] < min_price :
+        min_price = price[i]
+
 print(max_benefit)
