@@ -1,22 +1,21 @@
-# 원소의 수를 나타내는 n
+# 두번째 해설 방법이 너무 좋아서 다시 풀어봤다.
 n = int(input())
-
-# n개의 원소가 공백을 사이에 두고 주어짐.
 arr = list(map(int, input().split()))
-idx = n - 1
 
-while idx != 0 :
-    # Algorithm
-    # 1. 배열 전체를 순회하면서 가장 큰 수를 찾아서 반환하면서 인덱스를 저정한다.
-    max_elem = -1
-    for i in range(n) :
-        if max_elem < arr[i] :
-            max_elem = arr[i]
-            idx = i
-    # 최종, idx 에는 처음에 나온 가장 큰수의 index를 답고 있으면, 가장 큰 요소가 max_elem에 담아있게 됨.
-    # 최댓값의 위치 출력
-    print(idx+1, end = " ")
-    # 2. 이 이후부터는 위에서 구한 최댓값의 idx 위치 왼쪽부분에만 탐색이 진행되어야함.
-    #    arr에 idx 왼쪽 까지만을 다시 대입
-    arr = arr[:idx]
-    n = len(arr)
+# 출력할 index 리스트를 만들어준다.
+indices = list()
+
+# 첫번째 idx는 무조건 답이된다.
+indices.append(0)
+
+for i in range(1, n) :
+    # indices 리스트에서 가장 마지막 요소가 최근 가장 큰 요소의 idx를 나타내므로, 해당 idx를 가져온다
+    last_idx = indices[-1]
+
+    # 가장 큰 idx의 수와 현재 idx를 비교한다.
+    if arr[i] > arr[last_idx] :
+        indices.append(i)
+
+# 뒤에서부터 idx를 출력한다.
+for idx in indices[::-1] :
+    print(idx + 1, end = " ")
