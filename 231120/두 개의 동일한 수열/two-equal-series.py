@@ -6,8 +6,8 @@ A_arr.sort()
 B_arr.sort()
 
 isSame = True
-for i in range(n) :
-    if A_arr[i] != B_arr[i] :
+for a,b in zip(A_arr, B_arr) :
+    if a != b :
         isSame = False
         break
 
