@@ -1,3 +1,5 @@
+import sys
+
 char1= input()
 char2= input()
 
@@ -5,6 +7,11 @@ char1 = sorted(char1)
 char2 = sorted(char2)
 
 isSame = True
+if len(char1) != len(char2) :
+    isSame = False
+    print("No")
+    sys.exit()
+
 for c1,c2 in zip(char1, char2) :
     if c1 != c2 :
         isSame = False
