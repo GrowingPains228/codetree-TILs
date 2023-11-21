@@ -15,9 +15,13 @@ def check_str(parent_str, child_str) :
         return False
 
 arr.sort()
+count = 0
+for i in range(n) :
 
-for elem in arr :
-    if check_str(elem, T) is False :
-        arr.remove(elem)
+    if check_str(arr[i], T) is False :
+        continue
 
-print(arr[k-1])
+    count += 1
+
+    if count == k :
+        print(arr[i])
