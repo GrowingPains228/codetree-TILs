@@ -6,10 +6,17 @@ class User :
 
 n = int(input())
 people = []
-for _ in range(n) :
+
+for i in range(n) :
     name, address, local = tuple(input().split())
     people.append(User(name, address, local))
 
-print(f"name {people[n-1].name}")
-print(f"addr {people[n-1].address}")
-print(f"city {people[n-1].local}")
+last_user = people[0]
+for i in range(1,n) :
+    if last_user.name < people[i].name :
+        last_user = people[i]
+
+# 사전순으로 가장 느린 사람 출력하기
+print(f"name {last_user.name}")
+print(f"addr {last_user.address}")
+print(f"city {last_user.local}")
