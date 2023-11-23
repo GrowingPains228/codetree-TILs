@@ -1,16 +1,11 @@
 a,b,c,d = tuple(map(int, input().split()))
 
-elapsed_time = 0
-# 처음 해설에서 말하고 있는 방식 = 맘에안듬.
-while True : 
-    if a == c and b == d :
-        break
-    
-    elapsed_time += 1
-    b += 1
+def cal_min(hour, minute) :
+    return hour * 60 + minute
 
-    if b == 60 :
-        a += 1
-        b = 0
-    
-print(elapsed_time)
+elapsed_time = 0
+
+time2 = cal_min(c,d)
+time1 = cal_min(a,b)
+
+print(time2-time1)
