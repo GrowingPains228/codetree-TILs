@@ -1,14 +1,8 @@
-def move_set(x,char) :
-    if char == "L" :
-        return -1 * x
-    else :
-        return x
-
 #입력 받기
 n = int(input())
-
 road = [0] * 100
 current_idx = 0
+collect_arr = []
 #n번에 걸쳐서 입력 받기
 for _ in range(n) :
     x,Ro = tuple(input().split())
@@ -26,9 +20,11 @@ for _ in range(n) :
     # 지나간 경로 연산
     for i in range(current_idx, end_idx , in_de) :
         road[i] += 1
+        if road[i] >= 2 and i not in collect_arr  :
+            collect_arr.append(i)
 
     # 현재 인덱스 저장
-    current_idx = end_idx + 1 if end_idx >= current_idx else 0
+    current_idx = end_idx
 
 count = 0
 for elem in road :
@@ -36,3 +32,4 @@ for elem in road :
         count += 1
 
 print(count)
+#print(len(collect_arr))
