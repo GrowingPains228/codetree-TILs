@@ -1,40 +1,39 @@
-#입력 받기
+OFFSET = 1000
+MAX_R = 2000
+
+#변수 선언 및 입력
 n = int(input())
-# 테스트 케이스 보니깐 이렇게 범위를 주면 안될것 같은데...
-road = [0] * 500
+segments = []
+
 current_idx = 0
-collect_arr = []
-
-#n번에 걸쳐서 입력 받기
 for _ in range(n) :
-    x,Ro = tuple(input().split())
-    x = int(x)
-    in_de = 1   # for문내 증감 변수 정의
-    start_tf = 0
-    end_tf = 0
+    distance, direction = tuple(input().split())
+    distance = int(distance)
 
-    # L 이라면 왼쪽으로 가야하므로, 이에대한 Offest 업데이트
-    # 오른 쪽으로 갈때는 원래 알고리즘 대로 하면 되지만,
-    # 왼쪽으로 이동할때는 약간의 Offset을 주어 각 끝점에 유의 하여야한다.
-    if Ro == "L" :
-        start_tf -= 1
-        x *= -1 # 방향
-        in_de = -1
-        end_tf = -1
+    if direction == 'L' :
+        start_po = current_idx - distance
+        end_po = current_idx
+        current_idx -= distance
+    else :
+        start_po = current_idx
+        end_po = current_idx + distance
+        current_idx += distance
+    
+    segments.append((start_po, end_po))
 
-    # 종료될 인덱스 저장
-    end_idx = current_idx + x
+checked = [0] * (MAX_R + 1)
 
-    # 지나간 경로 연산
-    for i in range(current_idx + start_tf, end_idx + end_tf, in_de) :
-        road[i] += 1
+for x1, x2 in segments :
+    #offset을 더해준다.
+    x1, x2 = x1 + OFFSET, x2 + OFFSET
 
-    # 현재 인덱스 저장
-    current_idx = end_idx
+    #구간을 증감해준다.
+    for i in range(x1, x2) :
+        checked[i] += 1
 
-count = 0
-for elem in road :
-    if elem >= 2 :
-        count += 1
-
-print(count)
+cnt = 0
+for elem in checked :
+    if elem >= 2:
+        cnt += 1
+    
+print(cnt)
