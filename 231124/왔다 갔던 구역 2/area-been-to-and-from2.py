@@ -1,6 +1,7 @@
 #입력 받기
 n = int(input())
-road = [0] * 100
+# 테스트 케이스 보니깐 이렇게 범위를 주면 안될것 같은데...
+road = [0] * 500
 current_idx = 0
 collect_arr = []
 
