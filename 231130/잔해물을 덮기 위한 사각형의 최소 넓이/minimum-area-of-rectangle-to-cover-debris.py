@@ -28,23 +28,27 @@ color_area(rect2,False)
 #여기서 색칠된 부분을 덮을 최소 직사각형 넓이를 구해야함.
 
 x1, y1, x2, y2 = rect1
+x1, y1, x2, y2 = x1+OFFSET, y1+OFFSET, x2+OFFSET, y2+OFFSET
 max_x1, max_y1 = (0,0)
 
-for i in range(y2 + OFFSET -1, y1 -1 + OFFSET, -1) :
-    for j in range(x2 + OFFSET -1, x1 - 1 + OFFSET, -1) :
+for i in range(y2, y1 -1, -1) :
+    for j in range(x2 , x1 - 1, -1) :
         if area[i][j] == 1:
             if max_x1 < j :
-                max_x1 = j
+                max_x1 = j + 1
             if max_y1 < i :
-                max_y1 = i
+                max_y1 = i + 1
                 
-min_x1, min_y1 = (OFFSET * 2,OFFSET * 2)
-for i in range(y1 + OFFSET, y2 + OFFSET) :
-    for j in range(x1 + OFFSET, x2 + OFFSET) :
+min_x1, min_y1 = MAX_RANGE, MAX_RANGE
+for i in range(y1, y2) :
+    for j in range(x1, x2) :
         if area[i][j] == 1:
             if min_x1 >= j :
                 min_x1 = j
             if min_y1 >= i :
                 min_y1 = i
 
-print(((max_x1 - min_x1) + 1) * ((max_y1-min_y1) + 1))
+if (min_x1 == MAX_RANGE) and (min_y1 == MAX_RANGE) :
+    min_x1, min_y1 = (0,0)
+
+print((max_x1 - min_x1) * (max_y1-min_y1))
