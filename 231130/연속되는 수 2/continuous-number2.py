@@ -10,6 +10,7 @@ for i in range(N) :
     if i == 0 :
         curNum = num
         continue_cnt = 1
+        max_cnt = 1
         continue
 
     if curNum == num :
