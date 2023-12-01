@@ -5,7 +5,9 @@ for _ in range(m) :
     idx = int(input())
     students[idx] += 1
 
+student = -1
 for i in range(1, n + 1) :
     if students[i] >= k :
-        print(i)
+        student = i
         break
+print(student)
