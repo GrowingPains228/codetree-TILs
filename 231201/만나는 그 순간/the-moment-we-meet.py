@@ -36,6 +36,6 @@ for i in range(1, MAX_time + 1) :
         print(i)
         break
     
-    if i == cur_idx_A :
+    if i == (cur_idx_A - 1) or i == (cur_idx_B - 1) :
         print(-1)
         break
