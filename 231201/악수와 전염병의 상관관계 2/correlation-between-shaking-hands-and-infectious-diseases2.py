@@ -50,7 +50,7 @@ for i in range(1, late_Time) :
 
         is_Inpectionable[x] -= 1
         developers[y] = 1
-        is_Inpectionable[y] = 2
+        is_Inpectionable[y] = K
     # 3. y만 감염되어 있는 경우        
     elif developers[x] == 0 and developers[y] == 1 :
         if is_Inpectionable[y] == 0 :
@@ -58,7 +58,7 @@ for i in range(1, late_Time) :
 
         is_Inpectionable[y] -= 1
         developers[x] = 1
-        is_Inpectionable[x] = 2
+        is_Inpectionable[x] = K
 
 
 for i in range(1, N + 1) :
