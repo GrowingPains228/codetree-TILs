@@ -25,7 +25,7 @@ for _ in range(T) :
     late_Time = max(late_Time,t)
 
 # 타임 라인 꺼내서 기록하기
-for i in range(1, late_Time) :
+for i in range(1, late_Time + 1) :
     x,y = timeline[i]
 
     # 해당 시간대에 아무일도 일어나지 않았다면,
@@ -41,8 +41,8 @@ for i in range(1, late_Time) :
     # 감염시킬 수 있는지 판단 
     # 1. 둘다 감염되어 있는 경우
     if developers[x] == 1 and developers[y] == 1 :
-        is_Inpectionable[x] = is_Inpectionable[x] - 1 if is_Inpectionable[x] > 0 else 0
-        is_Inpectionable[y] = is_Inpectionable[y] - 1 if is_Inpectionable[y] > 0 else 0
+        is_Inpectionable[x] = is_Inpectionable[x] - (1 if is_Inpectionable[x] > 0 else 0)
+        is_Inpectionable[y] = is_Inpectionable[y] - (1 if is_Inpectionable[y] > 0 else 0)
     # 2. x만 감염되어 있는 경우
     elif developers[x] == 1 and developers[y] == 0 :
         if is_Inpectionable[x] == 0 :
