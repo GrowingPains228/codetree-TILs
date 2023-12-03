@@ -14,7 +14,7 @@ curIndex_B = 1
 for _ in range(m) :
     v,t = tuple(map(int, input().split()))
     for _ in range(t) :
-        distance_arr_B[curIndex_B] = distance_arr_A[curIndex_B - 1] + v
+        distance_arr_B[curIndex_B] = distance_arr_B[curIndex_B - 1] + v
         curIndex_B += 1
 
 SCORE_STAGE = (False,False)
