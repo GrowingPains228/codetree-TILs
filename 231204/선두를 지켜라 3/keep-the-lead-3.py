@@ -17,7 +17,7 @@ for _ in range(m) :
         distance_arr_B[curIndex_B] = distance_arr_A[curIndex_B - 1] + v
         curIndex_B += 1
 
-SCORE_STAGE = (True,True)
+SCORE_STAGE = (False,False)
 cnt = 0
 for i in range(1, curIndex_A) :
     cur_RANK = (False, False)
