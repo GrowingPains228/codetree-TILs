@@ -1,27 +1,28 @@
-n,t = tuple(map(int, input().split()))
+n, t = tuple(map(int, input().split()))
+
+def in_range(x, y) : 
+    return 0 <= x and x < n and 0 <= y and y < n
 
 dxs, dys = [1, 0, 0, -1], [0, 1, -1, 0]
 
-def in_range(nx, ny) :
-    return 0 <= nx and nx < n and 0 <= ny and ny <= n
-
 direct = {
     'U' : 0,
-    'D' : 3,
     'R' : 1,
-    'L' : 2
+    'L' : 2,
+    'D' : 3
 }
 
 r, c, d = tuple(input().split())
 
-x,y = int(r) -1, int(c) -1
-cur_d = direct[d]
-
+d_type = direct[d]
+r,c = int(r), int(c)
+x,y = r-1, c-1
+cnt, ans = 0, 0
 for _ in range(t) :
-    if not in_range(x + dxs[cur_d], y + dys[cur_d]) :
-        cur_d = 3 - cur_d
+    if in_range(x + dxs[d_type], y + dys[d_type]) :
+        x,y = x + dxs[d_type], y + dys[d_type]
     else :
-        x, y = x + dxs[cur_d], y + dys[cur_d]
+        d_type = 3 - d_type
+    
 
-
-print(x + 1, y + 1)
+print(x + 1,y + 1)
