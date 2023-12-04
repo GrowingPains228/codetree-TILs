@@ -12,7 +12,7 @@ for command in commands :
     elif command == 'R' :
         dir_num = (dir_num + 1) % 4
     else :
-        dir_num = (3 - dir_num) % 4
+        dir_num = (dir_num + 3) % 4
     
     elapmed_cnt += 1
     if x == 0 and y == 0 :
