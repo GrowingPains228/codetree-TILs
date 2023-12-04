@@ -11,23 +11,33 @@ direct_dict = {
 
 x,y = 0, 0
 
-return_time = -1
-cnt_time = 0
+ans = -1
+elapsed_time  = 0
 
-input_set = [
-    tuple(input().split()) for _ in range(n)
-]
+def move(move_dir, dist) :
+    global x,y
+    global ans, elapsed_time
 
-for direct, distance in input_set :
-    dic_num = direct_dict[direct]
-    for _ in range(int(distance)) :
-        x, y = x + dxs[dic_num], y + dys[dic_num]
-        cnt_time += 1
+    for _ in range(dist) :
+        x,y = x + dxs[move_dir], y + dys[move_dir]
+
+        elapsed_time += 1
+
         if x == 0 and y == 0 :
-            return_time = cnt_time
-            break
-    
-    if return_time != -1 :
+            ans = elapsed_time
+            return True
+        
+    return False
+
+for _ in range(n) :
+    s_dir, dist = tuple(input().split())
+    dist = int(dist)
+
+    move_dir = direct_dict[s_dir]
+
+    done = move(move_dir, dist)
+
+    if done :
         break
-    
-print(return_time)
+
+print(ans)
