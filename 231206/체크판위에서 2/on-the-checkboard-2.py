@@ -16,6 +16,6 @@ for i in range(1, r-2) :
         if arr[0][0] != arr[i][j] :
             for k in range(i + 1, r-1) :
                 for z in range(j + 1, c-1) :
-                    if arr[i][j] != arr[k][z] :
+                    if arr[i][j] != arr[k][z] and arr[k][z] == arr[i][j]:
                         cnt += 1
 print(cnt)
