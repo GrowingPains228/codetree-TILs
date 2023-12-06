@@ -4,12 +4,6 @@ arr = [
     for _ in range(r)
 ]
 
-# 각 위치에서 이동할 수 있는 깊이를 나타냄.
-count_arr = [
-    [0]*c
-    for _ in range(r) 
-]
-
 cnt = 0
 for i in range(1, r-2) :
     for j in range(1, c-2) :
