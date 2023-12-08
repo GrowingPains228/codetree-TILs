@@ -1,4 +1,4 @@
-MAX_RANGE = 100
+MAX_RANGE = 10000
 n,k = tuple(map(int, input().split()))
 
 arr = [0] * (MAX_RANGE + 1)
@@ -11,7 +11,7 @@ ans = 0
 
 for i in range(1, n - k + 2) :
     sum_value = 0
-    for j in range(i, i + k +1) :
+    for j in range(i, i + k + 1) :
         sum_value += arr[j]
 
     ans = max(ans, sum_value)
