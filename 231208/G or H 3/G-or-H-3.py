@@ -10,9 +10,9 @@ for _ in range( n) :
 ans = 0
 
 
-for i in range(1, MAX_RANGE - k + 2) :
+for i in range(1, MAX_RANGE - (k+1) + 2) :
     sum_value = 0
-    for j in range(i, i + k) :
+    for j in range(i, i + k+1) :
         sum_value += arr[j]
 
     ans = max(ans, sum_value)
