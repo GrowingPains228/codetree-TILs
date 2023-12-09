@@ -2,24 +2,23 @@ n,m = tuple(map(int, input().split()))
 A_arr = list(map(int, input().split()))
 B_arr = list(map(int, input().split()))
 
-group_b_retype = []
+def is_beautiful(a_nums, b_nums) :
+    length = len(a_nums)
+    if length == 1 :
+        if a_nums[0] == b_nums[0] :
+            return True
+        else :
+            return False
 
-def get_combinations(nums) :
-    if len(nums) == 0 :
-        return [[]];
+    for i in range(length) :
+        if a_nums[0] == b_nums[i] :
+            return is_beautiful(a_nums[1:], b_nums[:i]+b_nums[i+1:])
+            
+    return False
 
-    result = []
-    for i in range(len(nums)) :
-        for comb in get_combinations(nums[:i] + nums[i + 1:]):
-            result.append([nums[i]] + comb)
-    
-    return result
-
-group_b_retype = get_combinations(B_arr)
-    
 cnt = 0
 for i in range(n-m + 1) :
-    if A_arr[i : i+m] in group_b_retype :
+    if is_beautiful(A_arr[i : i+m], B_arr) :
         cnt += 1
 
 print(cnt)
