@@ -18,8 +18,8 @@ def get_combinations(nums) :
 group_b_retype = get_combinations(B_arr)
     
 cnt = 0
-for i in range(n-2) :
-    if A_arr[i : i+3] in group_b_retype :
+for i in range(n-m + 1) :
+    if A_arr[i : i+m] in group_b_retype :
         cnt += 1
 
 print(cnt)
