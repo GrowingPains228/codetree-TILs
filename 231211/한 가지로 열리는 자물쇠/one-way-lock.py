@@ -8,7 +8,7 @@ def in_range(n1, n2, n3) :
     if abs(pass2-n2) <= 2 :
         return True
 
-    if abs(pass2-n2) <= 2 :
+    if abs(pass3-n3) <= 2 :
         return True
     
     return False
