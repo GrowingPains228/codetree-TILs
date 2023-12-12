@@ -10,11 +10,13 @@ max_students = 0
 for i in range(n) :
     cash = b
     students = 0
+    presents[i] //= 2
     for j in range(n) :
-        if cash >= presents[j] or cash >= presents[j]//2 :
-            cash -= (presents[j]//2) if j == i else presents[j]
+        if cash >= presents[j] :
+            cash -= presents[j]
             students += 1
         
     max_students = max(max_students, students)
+    presents[i] *= 2
 
 print(max_students)
