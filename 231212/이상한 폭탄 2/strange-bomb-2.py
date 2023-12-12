@@ -4,13 +4,20 @@ arr = [
     int(input()) for _ in range(n)
 ]
 
+# def distance(i,j) :
+#     if i < j :
+#         i,j = j,i
+
+#     dis1 = i - j
+#     dis2 = (n-i) + j
+#     return min(dis1, dis2)
+
 def distance(i,j) :
     if i < j :
         i,j = j,i
 
     dis1 = i - j
-    dis2 = (n-i) + j
-    return min(dis1, dis2)
+    return dis1
 
 bomb_max = -1
 for i in range(n) :
