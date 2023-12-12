@@ -11,7 +11,7 @@ for i in range(n) :
     cash = b
     students = 0
     for j in range(n) :
-        if cash >= presents[j] :
+        if cash >= presents[j] or cash >= presents[j]//2 :
             cash -= (presents[j]//2) if j == i else presents[j]
             students += 1
         
