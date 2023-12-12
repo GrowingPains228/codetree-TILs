@@ -5,6 +5,9 @@ segments = [
     for _ in range(n)
 ]
 
+def area_cal(x1,x2,x3, y1, y2, y3) :
+    return abs((x1*y2 + x2*y3 + x3*y1) - (x2*y1 + x3*y2 + x1*y3))
+
 max_area = 0
 for i in range(n) :
     for j in range(i+1, n) :
@@ -22,6 +25,7 @@ for i in range(n) :
                 continue
             
             # 직각삼각형 이므로, 밑변 * 높이 = 넓이 가 됨
-            area = (max(x1,x2,x3) - min(x1,x2,x3)) * (max(y1,y2,y3) - min(y1, y2, y3))
+            #area = (max(x1,x2,x3) - min(x1,x2,x3)) * (max(y1,y2,y3) - min(y1, y2, y3))
+            area = area_cal(x1,x2,x3,y1,y2,y3)
             max_area = max(max_area, area)
 print(max_area)
