@@ -1,37 +1,29 @@
-MAX_LINE = 1000
-T,a,b = tuple(map(int, input().split()))
+import sys
 
-arr = [''] * (MAX_LINE + 1)
-unique_arr = [False] * (MAX_LINE + 1)
-for _ in range(T) :
-    alpha, position = tuple(input().split())
-    arr[int(position)] = alpha
+INT_MAX = sys.maxsize
 
-cnt = 0
-for i in range(1,MAX_LINE+1) :
-    if arr[i] == '' :
-        continue
-    # S,N을 만날것이고,
-    for j in range(i+1, MAX_LINE+1) :
-        if arr[j] == '' :
-            continue
-        
-        # 가까운 위치에 똑같은 놈이 있으면, 이 for문을 빠져나가서
-        # 방금 그놈을 잡도록 한다.
-        if arr[j] == arr[i] :
-            for z in range(i,j + 1) :
-                unique_arr[z] = True
-            break
+T, a, b = tuple(map(int, input().split()))
 
-        start, end = 0,0
-        if arr[i] == 'S' :
-            start, end = (i+j)//2, i
+arr = [
+    tuple(input().split())
+    for _ in range(T)
+]
+
+ans = 0
+for i in range(a,b+1) :
+
+    distance_s = INT_MAX
+    distance_n = INT_MAX
+
+    for (alpha, idx) in arr :
+        idx = int(idx)
+
+        if alpha == 'S' :
+            distance_s = min(distance_s, abs(i-idx))
         else :
-            start, end = j, (i+j)//2 if (i+j) % 2 == 0 else (i+j)//2 + 1
+            distance_n = min(distance_n, abs(i-idx))
 
-        for k in range(start, end-1, -1) :
-            unique_arr[k] = True
+    if distance_s <= distance_n :
+        ans += 1
 
-        break
-
-print(sum(unique_arr[a:b+1]))
+print(ans)
