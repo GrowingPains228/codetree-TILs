@@ -1,26 +1,25 @@
 x,y = tuple(map(int, input().split()))
 
-def is_Interesting(num) :
-    count = [0] * 10
+ans = 0
+
+for i in range(x, y+1) :
+    num = i
+    digit = [0] * 10
+    all_digit = 0
 
     while num > 0 :
-        count[num%10] += 1
+        digit[num%10] += 1
+        all_digit += 1
         num //= 10
-
-    cnt_1 = 0
-    cnt_2 = 0
-    for i in range(10) :
-        if count[i] >= 2:
-            cnt_2 += 1
-            
-        if count[i] >= 1:
-            cnt_1 += 1
     
-    return (cnt_1 == 2 and cnt_2 == 1)
+    interesting = False
 
-cnt = 0
-for i in range(x, y+1) : 
-    if is_Interesting(i) :
-        cnt += 1
+    for j in range(10) :
+        if digit[j] == all_digit -1 :
+            interesting = True
+            break
+    
+    if interesting :
+        ans += 1
 
-print(cnt)
+print(ans)
