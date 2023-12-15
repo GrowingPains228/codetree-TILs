@@ -17,9 +17,8 @@ for _ in range(n) :
 
 x_elem.sort()
 y_elem.sort()
-# 최소값은, x의 가운데 쯤과, y 의 가운데 쯤일 것이다.
-# 따라서, 정렬을 한다음 가운데에 있는 값들 사이를 조사하면 될것이다.
-ans = 0
+
+ans = INT_MAX
 diff_dots = INT_MAX
 for i in range(len(x_elem)) :
     x_axis = x_elem[i] + 1
@@ -36,12 +35,12 @@ for i in range(len(x_elem)) :
                     count[1] += 1
             else :
                 if y > y_axis :
-                    count[2] += 1
-                else :
                     count[3] += 1
+                else :
+                    count[2] += 1
 
-        if diff_dots > (max(count) - min(count)) :
+        if diff_dots >= (max(count) - min(count)) :
             diff_dots = (max(count) - min(count))
-            ans = max(count)
+            ans = min(ans,max(count))
 
 print(ans)
