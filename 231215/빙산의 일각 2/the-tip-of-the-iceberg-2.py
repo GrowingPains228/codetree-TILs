@@ -10,7 +10,7 @@ for i in range(n) :
     ground = arr[::]
 
     for k in range(n) :
-        ground[k] -= ground[i]
+        ground[k] -= arr[i]
 
     is_ice = False
     cnt = 0
