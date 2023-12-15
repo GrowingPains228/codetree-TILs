@@ -21,10 +21,10 @@ y_elem.sort()
 # 따라서, 정렬을 한다음 가운데에 있는 값들 사이를 조사하면 될것이다.
 ans = 0
 diff_dots = INT_MAX
-for i in range(len(x_elem)-1) :
+for i in range(len(x_elem)) :
     x_axis = x_elem[i] + 1
-    for j in range(len(y_elem)-1) :
-        y_axis = y_elem[j] +1
+    for j in range(len(y_elem)) :
+        y_axis = y_elem[j] + 1
 
         count = [0] * 4
 
