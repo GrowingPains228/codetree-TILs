@@ -17,7 +17,7 @@ for _ in range(n) :
 
 ans = 0
 #y와 나란하게 3개
-if len(x_elem) >= 3:
+if len(x_elem) == 3:
     for i in range(len(x_elem)) :
         for j in range(i+1, len(x_elem)) :
             for k in range(j+1, len(x_elem)) :
@@ -35,7 +35,7 @@ if len(x_elem) >= 3:
 
 
 # x축과 나란하게 3개
-if len(y_elem) >= 3:
+if len(y_elem) == 3:
     for i in range(len(y_elem)) :
         for j in range(i+1, len(y_elem)) :
             for k in range(j+1, len(y_elem)) :
@@ -67,7 +67,7 @@ for i in range(len(x_elem)) :
                 print(ans)
                 sys.exit()
 
-# x축과 나란하게 1개 y축과 나란하게 2개
+# x축과 나란하게 2개 y축과 나란하게 1개
 for i in range(len(x_elem)) :
     for j in range(len(y_elem)) :
         for k in range(j+1, len(y_elem)) :
