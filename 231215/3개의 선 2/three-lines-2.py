@@ -42,7 +42,7 @@ if len(y_elem) == 3:
                 cnt = 0
 
                 for (_,y) in dots :
-                    if y != y_elem[i] and y != y_elem[j] and x != y_elem[k] :
+                    if y != y_elem[i] and y != y_elem[j] and y != y_elem[k] :
                         break
                     cnt += 1
                 
