@@ -5,10 +5,10 @@ x,y = tuple(map(int, input().split()))
 
 ans = 0
 for i in range(x,y+1) :
-    num1 = list(str(i))
-    num2 = reversed(num1)
+    num1 = str(i)
+    num2 = num1[::-1]
 
-    if ''.join(num1) == ''.join(num2) :
+    if num1 == num2 :
         ans += 1
 
 print(ans)
