@@ -9,7 +9,7 @@ for i in range(n) :
     for j in range(i+1, n) :
         min_num, max_num = min(numbers[i:j]),max(numbers[i:j])
 
-        if max_num - min_num <= 3 :
+        if max_num - min_num <= k :
             ans = max(ans, (j-i))
 
 print(ans)
