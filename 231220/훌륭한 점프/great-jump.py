@@ -4,7 +4,7 @@ bridge = list(map(int, input().split()))
 def is_possible_value(num) :
     possible_arr = []
     for i in range(n) :
-        if bridge[i] <= num or i == 0 or i == n-1:
+        if bridge[i] <= num:
             possible_arr.append(i)
     
     length = len(possible_arr)
@@ -16,7 +16,7 @@ def is_possible_value(num) :
 
 
 ans = 101
-for i in range(n, 0, -1) :
+for i in range(n, max(bridge[0], bridge[-1])-1, -1) :
     if is_possible_value(i) :
         ans = min(ans, i)
 
