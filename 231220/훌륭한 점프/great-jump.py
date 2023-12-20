@@ -1,23 +1,18 @@
+MAX_NUM = 100
 n, k = tuple(map(int, input().split()))
 bridge = list(map(int, input().split()))
 
 def is_possible_value(num) :
-    possible_arr = []
-    for i in range(n) :
-        if bridge[i] <= num:
-            possible_arr.append(i)
-    
-    length = len(possible_arr)
-    for i in range(1, length) :
-        if possible_arr[i] - possible_arr[i-1] > k :
-            return False
-    
+    last_idx = 0
+    for i in range(1, n) :
+        if bridge[i] <= num :
+            if i - last_idx > k :
+                return False
+            last_idx = i
     return True
 
 
-ans = 101
-for i in range(100, max(bridge[0], bridge[-1])-1, -1) :
+for i in range(max(bridge[0], bridge[-1]), MAX_NUM + 1) :
     if is_possible_value(i) :
-        ans = min(ans, i)
-
-print(ans)
+        print(i)
+        break
