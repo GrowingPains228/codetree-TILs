@@ -16,7 +16,7 @@ def is_possible_value(num) :
 
 
 ans = 101
-for i in range(n, max(bridge[0], bridge[-1])-1, -1) :
+for i in range(100, max(bridge[0], bridge[-1])-1, -1) :
     if is_possible_value(i) :
         ans = min(ans, i)
 
