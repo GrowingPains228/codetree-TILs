@@ -17,7 +17,7 @@ for i in range(n) :
                         break
 
                 distance = n
-                for k in range(1, n) :
+                for k in range(cur_idx+1, n) :
                     if seat[k] == '1' :
                         distance = min(distance, k - cur_idx)
                         cur_idx = k
