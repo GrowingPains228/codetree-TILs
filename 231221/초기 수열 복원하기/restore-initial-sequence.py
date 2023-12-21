@@ -6,7 +6,7 @@ def sumulation(idx) :
     num1, num2 = origin[idx], arr[idx] - origin[idx]
 
     #동일한 숫자가 등장하면 
-    if num2 in origin or num1 == num2:
+    if num2 in origin or num1 == num2 or num2 < 0:
         return False
 
     # 동일한 숫자들이 존재하지 않으면, 이곳으로 넘어간다.
@@ -19,12 +19,13 @@ def sumulation(idx) :
 # 처음 arr[0] 값에 따라서 분기가 나뉘므로, 처음 분기 들을 계산해준다.
 num1, num2 = 0,0
 for i in range(1, arr[0]) :
-    if i == (arr[0]-i) or (arr[0]-i) > arr[1]:
+    #경우의 수 계산
+    num1, num2 = i, arr[0]-i
+    if num1 == num2:
         continue
 
-    #경우의 수 대입
-    num1, num2 = i, arr[0]-i
     origin[0], origin[1] = num1, num2
+
 
     #시뮬레이션 실행
     #시물레이션 결과가 맞으면, 밖으로 빠져나와 origin을 출력
