@@ -16,7 +16,11 @@ for i in range(MAX_VALUE + 1) :
 
         cnt += 1
         
-    if cnt >= i + 1 :
-        ans = max(ans, i+1)
+    if l > 0 :
+        if cnt >= i + 1 :
+            ans = max(ans, i+1)
+    else : 
+        if cnt >= i :
+            ans = max(ans, i)
 
 print(ans)
