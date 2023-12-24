@@ -1,6 +1,6 @@
 import sys
 MAX_INT = sys.maxsize
-MAX_RANGE = 100
+MAX_RANGE = 10000
 
 
 n, m = tuple(map(int, input().split()))
