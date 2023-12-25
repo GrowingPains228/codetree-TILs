@@ -13,4 +13,4 @@ for _ in range(n) :
     min_x2 = min(min_x2, x2)
     cnt += 1
 
-print("Yes" if cnt == n-1 else "No")
+print("Yes" if cnt == n-1 or cnt == 1 else "No")
