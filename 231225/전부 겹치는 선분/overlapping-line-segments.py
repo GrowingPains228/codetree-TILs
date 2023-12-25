@@ -1,20 +1,15 @@
 MAX_RANGE = 100
 n = int(input())
 
+max_x = MAX_RANGE
+min_x = 0
 
-lines = [
-    tuple(map(int, input().split()))
-    for _ in range(n)
-]
+for _ in range(n) :
+    x1, x2 = tuple(map(int, input().split()))
+    min_x = max(min_x, x1)
+    max_x = min(max_x, x2)
 
-count_lines = [0]*(MAX_RANGE+1)
-
-#이거 전체를 전부 +=1 해주면 되지 않나..?
-for (x1,x2) in lines :
-    for i in range(x1, x2+1) :
-        count_lines[i] += 1
-    
-if n in count_lines :
-    print("Yes")
-else :
+if min_x > max_x :
     print("No")
+else :
+    print("Yes")
