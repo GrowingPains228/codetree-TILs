@@ -28,10 +28,11 @@ if chatting[p-1].unread_cnt > 0 :
         People[order] = True
 else :
     for i in range(m) :
-        if cur_person == i :
+        order = ord(chatting[i].owner) - ord('A')
+        if cur_person == order :
             continue
 
-        People[i] = True
+        People[order] = True
 
 ans = [ chr(ord('A') + i) for i in range(n) if not People[i] ]
 
