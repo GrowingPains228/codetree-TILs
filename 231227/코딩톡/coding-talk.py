@@ -3,7 +3,6 @@ class Chat :
         self.owner, self.unread_cnt = owner, unread_cnt
 
 n, m, p = tuple(map(int, input().split()))
-humans = [ chr(i) for i in range(ord('A'), ord('A') + n+1) ]
 
 chatting = []
 for _ in range(m) :
@@ -14,8 +13,10 @@ for _ in range(m) :
 People = [False] * n 
 cur_person = ord(chatting[p-1].owner) - ord('A')
 People[cur_person] = True
-if chatting[p-1].unread_cnt == chatting[p-2].unread_cnt :
-    People[ord(chatting[p-2].owner) - ord('A')] = True
+idx = p-1
+while chatting[idx].unread_cnt == chatting[idx -1].unread_cnt :
+    People[ord(chatting[idx-1].owner) - ord('A')] = True
+    idx -= 1
 
 ans = []
 if chatting[p-1].unread_cnt > 0 :
@@ -25,10 +26,14 @@ if chatting[p-1].unread_cnt > 0 :
             continue
 
         People[order] = True
+else :
+    for i in range(m) :
+        if cur_person == i :
+            continue
 
-    ans = [
-        chr(ord('A') + i) for i in range(n) if not People[i]
-    ]
+        People[i] = True
+
+ans = [ chr(ord('A') + i) for i in range(n) if not People[i] ]
 
 for elem in ans :
     print(elem, end = ' ')
