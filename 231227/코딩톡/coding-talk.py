@@ -6,7 +6,7 @@ message = [
     list(input().split()) for _ in range(m)
 ]
 
-if message[p-1][1] == 0 :
+if int(message[p-1][1]) == 0 :
     sys.exit()
 
 for i in range(n) :
