@@ -12,11 +12,14 @@ for _ in range(m) :
     chatting.append(Chat(c, int(u)))
 
 People = [False] * n 
-People[ord(chatting[p-1].owner) - ord('A')] = True
+cur_person = ord(chatting[p-1].owner) - ord('A')
+People[cur_person] = True
+if chatting[p-1].unread_cnt == chatting[p-2].unread_cnt :
+    People[ord(chatting[p-2].owner) - ord('A')] = True
 
 ans = []
 if chatting[p-1].unread_cnt > 0 :
-    for i in range(p+1, m) :
+    for i in range(p, m) :
         order = ord(chatting[i].owner) - ord('A')
         if People[order] :
             continue
