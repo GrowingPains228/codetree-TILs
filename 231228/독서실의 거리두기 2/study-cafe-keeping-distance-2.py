@@ -3,6 +3,12 @@ seats = list(input())
 
 sp, ep = 0,0
 dis = 0
+# 처음 좌석에 사람이 있는 경우를 체크
+first_isvalue = True
+if seats[0] == '0' :
+    first_isvalue = False
+    seats[0] = '1'
+
 # 가장 멀리 떨어져 있는 구간을 찾는다.
 for i in range(n) :
     if seats[i] == '1' :
@@ -18,11 +24,16 @@ for i in range(n) :
                     if dis//2 < j-i :
                         sp ,ep = i, -1
 
-# 자리에 앉히고 거리를 측정한다.
-if ep == -1:
-    seats[ep] = '1'
+# 처음에 값이 없었는데, 제일 먼 거리로 잡혔다면 그대로 패스
+if not first_isvalue and sp == 0 :
+    pass
 else :
-    seats[sp + dis//2] = '1'
+    if ep == -1:
+        seats[ep] = '1'
+    else :
+        seats[sp + dis//2] = '1'
+    
+    seats[0] = '0' if first_isvalue else '1'
 
 ans = n
 # 가장 멀리 떨어져 있는 구간을 찾는다.
