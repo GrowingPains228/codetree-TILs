@@ -33,7 +33,7 @@ else :
     else :
         seats[sp + dis//2] = '1'
     
-    seats[0] = '0' if first_isvalue else '1'
+    seats[0] = '1' if first_isvalue else '0'
 
 ans = n
 # 가장 멀리 떨어져 있는 구간을 찾는다.
