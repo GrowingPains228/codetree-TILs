@@ -2,13 +2,15 @@ n = int(input())
 seats = list(input())
 
 sp, ep = 0,0
-dis = 0
-# 처음 좌석에 사람이 있는 경우를 체크
-first_isvalue = True
+start_dis, end_dis = 0,0
+# 처음에 사람이 없으면, 카운트 하기
 if seats[0] == '0' :
-    first_isvalue = False
-    seats[0] = '1'
+    for i in range(1, n) :
+        if seats[i] == '1' :
+            start_dis = i
+            break
 
+dis = 0
 # 가장 멀리 떨어져 있는 구간을 찾는다.
 for i in range(n) :
     if seats[i] == '1' :
@@ -18,22 +20,24 @@ for i in range(n) :
                     dis = j - i
                     sp = i
                 break
-            else : 
-                # 제일 끝에 자리가 없고 그 자리가 가장 멀다면
-                if  j == n-1 :
-                    if dis//2 < j-i :
-                        sp ,ep = i, -1
 
-# 처음에 값이 없었는데, 제일 먼 거리로 잡혔다면 그대로 패스
-if not first_isvalue and sp == 0 :
-    pass
+# 제일 끝에 사람이 없으면, 카운트 하기
+if seats[-1] == '0' :
+    for i in range(n-2, -1, -1) :
+        if seats[i] == '1' :
+            end_dis = (n-1) - i
+            break
+
+max_dis = start_dis
+max_dis = max(max_dis, end_dis)
+max_dis = max(max_dis, dis//2)
+
+if max_dis == start_dis :
+    seats[0] = '1'
+elif max_dis == end_dis :
+    seats[-1] = '1'
 else :
-    if ep == -1:
-        seats[ep] = '1'
-    else :
-        seats[sp + dis//2] = '1'
-    
-    seats[0] = '1' if first_isvalue else '0'
+    seats[sp + dis//2] = '1'
 
 ans = n
 # 가장 멀리 떨어져 있는 구간을 찾는다.
