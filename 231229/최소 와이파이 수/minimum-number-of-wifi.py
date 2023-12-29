@@ -6,6 +6,7 @@ idx = 0
 while idx < n :
     if seat[idx] == 0 :
         idx += 1
+        continue
     
     # 손님이 앉아 있는데, 와이파이 존이 아니라면, 
     cnt += 1 #와이파이 설치하고 
