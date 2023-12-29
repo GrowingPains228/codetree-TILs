@@ -12,6 +12,9 @@ for i in range(1, n) :
     
     second = temp_arr[i]
     # 두번째로 작은 숫자가 여러개라면 -1 출력
+    if i + 1 < n and temp_arr[i] == temp_arr[i+1] :
+        second = -1
+
     break
     
 if second == -1 :
