@@ -10,7 +10,7 @@ if max_num == 0  :
 elif max_num < 0 :
     ans = sort_arr[-1] * sort_arr[-2] * sort_arr[-3]
 else :
-    ans = max(ans, sort_arr[-1] * sort_arr[-2] * sort_arr[-3])
+    ans = sort_arr[-1] * sort_arr[-2] * sort_arr[-3]
     ans = max(ans, sort_arr[0] * sort_arr[1] * sort_arr[-1])
 
 print(ans)
