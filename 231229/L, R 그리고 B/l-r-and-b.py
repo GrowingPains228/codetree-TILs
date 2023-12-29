@@ -22,12 +22,12 @@ for i in range(n) :
 # - 2. 그 사이에 R이 없다면, 최단거리를 구해주면됨.
 ans = 0
 if L_x == B_x :
-    if R_x == L_x :
+    if R_x > min(L_x,B_x) and R_x < max(L_x,B_x) :
         ans = abs(B_y - L_y) + 1
     else :
         ans = abs(B_y - L_y) -1
 elif  L_y == B_y :
-    if R_y == L_y :   
+    if R_y < max(L_y,B_y) and R_y > min(L_y,B_y) :   
         ans = abs(B_x - L_x) + 1
     else : 
         ans = abs(B_x - L_x) -1
