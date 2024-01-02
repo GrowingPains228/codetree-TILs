@@ -79,10 +79,19 @@ for _ in range(m) :
     command = input().split()
     
     if command[0] == 'L' :
+        if it == breads.begin() :
+            continue
+        
         it = it.prev
     elif command[0] == 'R' :
+        if it == breads.end() :
+            continue
+        
         it = it.next
     elif command[0] == 'D' :
+        if it == breads.end() :
+            continue
+            
         it = breads.erase(it)
     else : 
         breads.insert(it,command[1])
