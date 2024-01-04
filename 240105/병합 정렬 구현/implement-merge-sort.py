@@ -1,38 +1,40 @@
 n = int(input())
 arr = list(map(int, input().split()))
-
-def merge_sort(low, high) :
-    global arr
-    if high - low >= 2 :
-        mid = (low + high)//2
-        merge_sort(low, mid)
-        merge_sort(mid, high)
-        merge(low, mid, high)
+merged_arr = [0] * n
 
 def merge(low, mid, high) :
-    global arr
-    new_arr = []
-    i,j = low, mid
-    while i < mid and j < high :
-        if arr[i] < arr[j] :
-            new_arr.append(arr[i])
+    i,j = low, mid+1
+    k = low
+    while i <= mid and j <= high :
+        if arr[i] <= arr[j] :
+            merged_arr[k] = arr[i]
             i += 1
         else :
-            new_arr.append(arr[j])
+            merged_arr[k] = arr[j]
             j += 1
+        k += 1
 
-    while i < mid :
-        new_arr.append(arr[i])
+    while i <= mid :
+        merged_arr[k] = arr[i]
         i += 1
+        k += 1
 
-    while j < high :
-        new_arr.append(arr[j])
+    while j <= high :
+        merged_arr[k] = arr[j]
         j += 1
+        k += 1
     
-    for idx in range(low, high) :
-        arr[idx] = new_arr[idx-low]
+    for k in range(low, high+1) :
+        arr[k] = merged_arr[k]
 
-merge_sort(0, len(arr))
+def merge_sort(low, high) :
+    if low < high :
+        mid = (low + high)//2
+        merge_sort(low, mid)
+        merge_sort(mid+1, high)
+        merge(low, mid, high)
+
+merge_sort(0, n-1)
 
 for elem in arr :
     print(elem, end =" ")
