@@ -18,7 +18,7 @@ def heap_sort(n) :
     for i in range(n//2, 0, -1) :
         heapfity(n, i)
     
-    for i in range(n, 1, -1) :
+    for i in range(n, 0, -1) :
         arr[1], arr[i] = arr[i], arr[1]
         heapfity(i-1, 1)
 
