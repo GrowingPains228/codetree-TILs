@@ -28,16 +28,18 @@ class Stack :
 
 string = input()
 s = Stack()
+Correct = True
 for elem in string :
     if elem == "(" :
         s.push("(")
     else :
         if s.empty() :
+            Correct = False
             break
 
         s.pop()
 
-if not s.empty() :
+if not Correct :
     print("No")
 else :
     print("Yes")
