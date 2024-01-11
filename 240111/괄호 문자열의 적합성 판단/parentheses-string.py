@@ -39,7 +39,7 @@ for elem in string :
 
         s.pop()
 
-if not Correct :
-    print("No")
-else :
+if Correct and s.empty():
     print("Yes")
+else :
+    print("No")
