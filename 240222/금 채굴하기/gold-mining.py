@@ -24,7 +24,7 @@ def function(x,y,k) :
 cnt_gold = 0
 for i in range(n) :
     for j in range(n) :
-        for k in range(max_k) :
+        for k in range(max_k+1) :
             golds = function(j,i,k)
 
             if golds * m >= cost_land(k) :
