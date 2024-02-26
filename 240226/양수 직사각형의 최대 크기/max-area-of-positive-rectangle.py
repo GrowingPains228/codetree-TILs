@@ -29,4 +29,4 @@ def find_rect():
 
 ans = 0
 ans = find_rect()
-print(ans)
+print(ans if ans > 0 else -1)
