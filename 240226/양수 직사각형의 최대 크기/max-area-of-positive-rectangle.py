@@ -17,7 +17,7 @@ def cal_Area(x1, y1, x2, y2):
 
 
 def find_rect():
-    max_area = 0
+    max_area = -1
     for i in range(n):
         for j in range(m):
             for k in range(i, n):
@@ -27,6 +27,6 @@ def find_rect():
     return max_area
 
 
-ans = 0
+ans = -1
 ans = find_rect()
 print(ans if ans > 0 else -1)
