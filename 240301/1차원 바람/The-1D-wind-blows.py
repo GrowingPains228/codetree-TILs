@@ -19,7 +19,7 @@ def Move(index, direction) :
         grid[index][0] = temp
 
 def Move_Up(index, direction):
-    while index - 1 >= 0 and check_avable_up(index) :
+    while index - 1 >= 0 and check_avable(index, index-1) :
         index -= 1
         if direction == 'R' :
             Move(index, 'L')
@@ -29,7 +29,7 @@ def Move_Up(index, direction):
             direction = 'R'
 
 def Move_Down(index, direction):
-    while index + 1 < N and check_avable_down(index) :
+    while index + 1 < N and check_avable(index, index+1) :
         index += 1
         if direction == 'R' :
             Move(index, 'L')
@@ -38,20 +38,11 @@ def Move_Down(index, direction):
             Move(index, 'R')
             direction = 'R'
 
-def check_avable_up(index) :
-    for x1, x2 in zip(grid[index], grid[index-1]) :
-        if x1 == x2 :
-            return True
-
-    return False
-
-def check_avable_down(index) :
-    for x1, x2 in zip(grid[index], grid[index+1]) :
-        if x1 == x2 :
-            return True
-
-    return False
-
+def check_avable(index1, index2) :
+    return any([
+        grid[index1][col] == grid[index2][col]
+        for col in range(M)
+    ])
 
 for _ in range(Q) :
     r, d = input().split()
