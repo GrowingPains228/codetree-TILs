@@ -7,10 +7,8 @@ grid = [
 
 def move(time):
     for _ in range(time) :
-        end_value = grid[n-1][n-1]
-        pre_temp = 0
-        for i in range(n-1, -1, -1) :
-            pe_temp = grid[i][n-1]
+        end_value = grid[2][n-1]
+        for i in range(2, -1, -1) :
             for j in range(n-1, 0, -1) :
                 grid[i][j] = grid[i][j-1]
             
