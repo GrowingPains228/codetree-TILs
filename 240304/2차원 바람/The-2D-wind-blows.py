@@ -36,8 +36,8 @@ def spin_around(x1, y1, x2, y2):
 # 평균 구하는 함수
 def cal_avgAround(x1, y1, x2, y2):
     global avg_grid
-    range_x = [-1, 0, 0, 1]
-    range_y = [0, -1, 1, 0]
+    range_x = [0, -1, 0, 0, 1]
+    range_y = [0, 0, -1, 1, 0]
     avg_grid = [[0]*m for _ in range(n)]
 
     for x in range(x1, x2+1) :
@@ -46,12 +46,13 @@ def cal_avgAround(x1, y1, x2, y2):
             cnt = 1            
             value = grid[x][y]
 
-            for dx, dy in zip(range_x, range_y):
-                if in_range(x + dx, y + dy):
-                    cnt += 1
-                    value += grid[x + dx][y + dy]
+            active_numbers = [
+                grid[x + dx][y + dy]
+                for dx, dy in zip(range_x, range_y)
+                if in_range(x + dx, y + dy)
+            ]
 
-            avg_grid[x][y] = value//cnt
+            avg_grid[x][y] = sum(active_numbers)//len(active_numbers)
 
 # 값 복사
 def Reflect(x1, y1, x2, y2) :
