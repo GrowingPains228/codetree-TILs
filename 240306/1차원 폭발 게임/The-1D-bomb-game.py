@@ -4,51 +4,76 @@ arr = [
 ]
 end_idx = n
 
-def is_Continuous_elem():
-    global arr
-    for i in range(end_idx-1):
-        if arr[i] == arr[i+1]:
-            return True
 
+def is_Continuous():
+    global arr,end_idx,m
+    ans = 1
+    check_point = 0
+    target = arr[check_point]
+    cnt = 1
+    for i in range(1, end_idx):
+        if target == arr[i]:
+            cnt += 1
+            ans = max(ans, cnt)
+        else:
+            cnt = 1
+            check_point = i
+            target = arr[check_point]
+
+    if ans >= m :
+        return True
     return False
 
 
-def Bomb_and_copy(m):
+def Continuous_numbers():
     global arr, end_idx
-    max_idx = len(arr)
-    st = 0
+    check_point = 0
+    target = arr[check_point]
     cnt = 1
-    temp = []
-    idx = 1
-    while idx < end_idx:
-        if arr[st] == arr[idx] :
+    for i in range(1, end_idx):
+        if target == arr[i]:
             cnt += 1
-
-            if idx == end_idx-1 and cnt >= m:
-                for i in range(st, end_idx) :
+        else:
+            # 폭발할 애들 폭발
+            if cnt >= m:
+                Bomb(check_point, i)
+                for i in range(check_point, i):
                     arr[i] = 0
-        else :
-            if cnt >= m :
-                for i in range(st, idx) :
-                    arr[i] = 0
-            st = idx
+            check_point = i
+            target = arr[check_point]
             cnt = 1
 
-        idx += 1
+    # 마지막 부분도 폭발할 애들이 있으면 0으로 채워주기
+    if cnt >= m:
+        Bomb(check_point, end_idx)
 
-    
+
+def Bomb(cp, ep):
+    global arr
+    for i in range(cp, ep):
+        arr[i] = 0
+
+
+def apply_gravity():
+    global arr,end_idx
+    temp = []
     for i in range(end_idx):
-        if arr[i] == 0 :
-            continue
-        temp.append(arr[i])
+        if arr[i] != 0 :
+            temp.append(arr[i])
     end_idx = len(temp)
 
     for i in range(end_idx):
         arr[i] = temp[i]
+    
+
+def simulation():
+    Continuous_numbers()
+    apply_gravity()
 
 
-while is_Continuous_elem() :
-    Bomb_and_copy(m)
+
+while is_Continuous():
+    simulation()
 
 print(end_idx)
 for i in range(end_idx):
