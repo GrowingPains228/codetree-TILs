@@ -7,6 +7,10 @@ end_idx = n
 
 def is_Continuous():
     global arr,end_idx,m
+
+    if end_idx <= 1:
+        return False
+
     ans = 1
     check_point = 0
     target = arr[check_point]
@@ -37,8 +41,7 @@ def Continuous_numbers():
             # 폭발할 애들 폭발
             if cnt >= m:
                 Bomb(check_point, i)
-                for j in range(check_point, i):
-                    arr[j] = 0
+
             check_point = i
             target = arr[check_point]
             cnt = 1
@@ -69,7 +72,6 @@ def apply_gravity():
 def simulation():
     Continuous_numbers()
     apply_gravity()
-
 
 
 while is_Continuous():
