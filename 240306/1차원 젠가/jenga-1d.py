@@ -1,6 +1,5 @@
 n = int(input())
 Jenga_arr = [int(input()) for _ in range(n)]
-Jenga_arr.reverse()
 s1, e1 = tuple(map(int, input().split()))
 s2, e2 = tuple(map(int, input().split()))
 
@@ -22,5 +21,5 @@ remove_PartRange_anc_Copy(s1-1, e1-1)
 remove_PartRange_anc_Copy(s2-1, e2-1)
 
 print(len(Jenga_arr))
-for elem in Jenga_arr[::-1] :
+for elem in Jenga_arr :
     print(elem)
