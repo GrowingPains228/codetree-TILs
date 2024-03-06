@@ -37,8 +37,8 @@ def Continuous_numbers():
             # 폭발할 애들 폭발
             if cnt >= m:
                 Bomb(check_point, i)
-                for i in range(check_point, i):
-                    arr[i] = 0
+                for j in range(check_point, i):
+                    arr[j] = 0
             check_point = i
             target = arr[check_point]
             cnt = 1
