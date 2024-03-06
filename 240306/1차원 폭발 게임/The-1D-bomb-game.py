@@ -8,7 +8,7 @@ end_idx = n
 def is_Continuous():
     global arr,end_idx,m
 
-    if end_idx <= 1:
+    if end_idx < m:
         return False
 
     ans = 1
