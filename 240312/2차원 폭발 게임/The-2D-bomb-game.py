@@ -73,8 +73,8 @@ def Print_Grid(log):
 for _ in range(k):
     Bomb()
     Rotate()
-    Bomb()
 
+Bomb()
 
 ans = 0
 for i in range(n):
