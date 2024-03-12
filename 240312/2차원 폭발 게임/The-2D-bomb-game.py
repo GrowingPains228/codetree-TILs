@@ -35,6 +35,7 @@ def Bomb():
 
     Apply_Grabity()
 
+
 # 90도 돌려주기
 def Rotate():
     temp = [
@@ -47,7 +48,6 @@ def Rotate():
             grid[i][j] = temp[i][j]
 
     Apply_Grabity()
-
 
 
 # 중력 작용
@@ -79,18 +79,19 @@ def Print_Grid(log):
 
 for _ in range(k):
     Bomb()
+    while isChanged:
+        Bomb()
     Rotate()
 
-# 일단 터트려 보고, 
+# 일단 터트려 보고, 터트리기 전 상태와 터트린 후의 상태가 같다면 Stop
+isChanged = True
 while isChanged:
     Bomb()
-    Rotate()
-    #터트리기 전 상태와 터트린 후의 상태가 같다면 Stop
 
 ans = 0
 for i in range(n):
     for j in range(n):
-        if grid[i][j] > 0 :
+        if grid[i][j]:
             ans += 1
 
 print(ans)
