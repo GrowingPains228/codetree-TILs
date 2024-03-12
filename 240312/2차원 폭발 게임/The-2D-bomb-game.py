@@ -15,9 +15,7 @@ def Bomb():
         cnt = 0
         for j in range(n-1, -1, -1):  
             if grid[target_index][i] == 0:
-                target_index = j
-                cnt = 1
-                continue
+                break
 
             if grid[target_index][i] == grid[j][i]:
                 cnt += 1
@@ -86,6 +84,7 @@ for _ in range(k):
 # 일단 터트려 보고, 
 while isChanged:
     Bomb()
+    Rotate()
     #터트리기 전 상태와 터트린 후의 상태가 같다면 Stop
 
 ans = 0
