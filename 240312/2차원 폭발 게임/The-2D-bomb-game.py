@@ -10,8 +10,8 @@ temp = [ [0]*n for _ in range(n)]
 def Bomb():
     for i in range(n) :
         target_index = n-1
-        cnt = 1
-        for j in range(n-2, -1, -1):
+        cnt = 0
+        for j in range(n-1, -1, -1):  
             if grid[target_index][i] == grid[j][i]:
                 cnt += 1
 
