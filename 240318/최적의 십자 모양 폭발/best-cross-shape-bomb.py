@@ -34,49 +34,23 @@ def count_optimum():
     ans = 0
     # 가로 검사
     for i in range(n):
-        cnt = 1
         idx = 0
-        for j in range(1, n):
-            if copy_grid[i][idx] == 0:
-                idx = j
-                cnt = 1
-                continue 
-
-            if copy_grid[i][idx] == copy_grid[i][j]:
-                cnt += 1
-
-                if j == n-1 and cnt == 2:
-                    ans += 1
-            else:
-                if cnt == 2:
-                    ans += 1
-                
-                idx = j
-                cnt = 1
-    
-    # 세로 검사
+        while idx + 1 < n:
+            if copy_grid[i][idx] and copy_grid[i][idx] == copy_grid[i][idx + 1]:
+                ans += 1
+            
+            idx += 1
+    # 세로검사
     for i in range(n):
-        cnt = 1
         idx = 0
-        for j in range(1,n):
-            if copy_grid[idx][i] == 0:
-                idx = j
-                cnt = 1
-                continue 
-
-            if copy_grid[idx][i] == copy_grid[j][i]:
-                cnt += 1
-
-                if j == n-1 and cnt == 2:
-                    ans += 1
-            else:
-                if cnt == 2:
-                    ans += 1
-                
-                idx = j
-                cnt = 1
-
+        while idx + 1 < n:
+            if copy_grid[idx][i] and copy_grid[idx][i] == copy_grid[idx + 1][i]:
+                ans += 1
+            
+            idx += 1
+    
     return ans
+
 
 
 ans = 0
