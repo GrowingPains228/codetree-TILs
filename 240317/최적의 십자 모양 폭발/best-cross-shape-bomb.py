@@ -39,6 +39,9 @@ def count_optimum():
         for j in range(1, n):
             if copy_grid[i][idx] == copy_grid[i][j]:
                 cnt += 1
+
+                if j == n-1 and cnt == 2:
+                    ans += 1
             else:
                 if cnt == 2:
                     ans += 1
