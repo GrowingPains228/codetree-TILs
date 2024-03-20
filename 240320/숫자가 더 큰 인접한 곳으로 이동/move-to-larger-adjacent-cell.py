@@ -14,7 +14,7 @@ def In_range(x,y) :
 
 def simulation():
     global cur_x, cur_y
-    dxs, dys = [1, -1, 0 ,0], [0, 0, -1, 1]
+    dxs, dys = [-1, 1, 0 ,0], [0, 0, -1, 1]
     print(grid[cur_x][cur_y], end = " ")
     while True:
         max_num = 0
