@@ -4,45 +4,31 @@ grid = [
     for _ in range(n)
 ]
 
-# 밑에서 부터 1이 채워져 있다고 가정하고 짠 함수 (* 근데, 테스트 케이스는 그게 아니었음)
-def get_HightestRow(start_colume, max_colume):
-    Index_row = n-1
+#해당 row의 [col_s, col_e] 열에
+#전부 블럭이 없는지를 확인
+def all_blank(row, col_s, col_e):
+    return all([
+        not grid[row][col]
+        for col in range(col_s, col_e+1)
+    ])
 
-    for c in range(start_colume, max_colume + 1):
-        while True:
-            if not grid[Index_row][c] :
-                break
 
-            Index_row -= 1
+def get_target_row():
+    for row in range(n-1):
+        if not all_blank(row + 1, k, k + m - 1):
+            return row
     
-    return Index_row
+    return n - 1
 
-# 범위 안에서 전부 탐색하며 제일 위쪽 열의 Index를 반환하는 함수
-def get_HightestRow2(start_colume, max_colume):
-    Index_row = n-1
+k -= 1
 
-    for c in range(start_colume, max_colume + 1):
-        for r in range(n-1, 0, -1):
-            if grid[r][c] :
-                Index_row = min(Index_row, r)
-    
-    return Index_row if Index_row == n-1 else Index_row -1
+#최종적으로 멈추게 될 위치를 구한다.
+target_row = get_target_row()
 
-
-def fill_Entity(x, y, length):
-    for i in range(y, y + length):
-        grid[x][i] = 1
-
-
-def simulation():
-    global m, k
-    height = get_HightestRow2(k-1, k + m - 2)
-    fill_Entity(height, k-1, m)
-    
-
-simulation()
+for col in range(k, k+m):
+    grid[target_row][col] = 1
 
 for row in grid:
-    for elem in row :
+    for elem in row:
         print(elem, end = ' ')
     print()
