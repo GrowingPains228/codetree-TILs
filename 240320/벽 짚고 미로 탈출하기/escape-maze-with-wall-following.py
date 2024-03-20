@@ -12,7 +12,6 @@ cur_dir = 0
 dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
 
 x ,y = x - 1, y - 1
-original_x, original_y = x,y
 
 def in_range(x,y):
     return x >= 0 and y >= 0 and x < n and y < n
@@ -41,9 +40,13 @@ def Auto_Rotate():
         
     # 돌다 왔는데, 제자리라면 그건 사방이 벽으로 막힌경우
     if not count_check:
-        print(-1)
-        return UNESCAPE
+        return False
+    else:
+        return True
 
+
+def check_Wall():
+    global cur_dir
     # 이동한 위치 오른쪽에 벽이 없는 경우
     rx, ry = x + dxs[(cur_dir + 1) % 4], y + dys[(cur_dir + 1)%4]
     if in_range(rx, ry) and grid[rx][ry] == '.' :
@@ -51,10 +54,11 @@ def Auto_Rotate():
         Move()
 
 while in_range(x,y) :
-     Auto_Rotate()
+     tf = Auto_Rotate()
      Move()
+     check_Wall()
 
-     if second > n*n :
+     if second > n*n or not tf:
         second = UNESCAPE
         break
 
