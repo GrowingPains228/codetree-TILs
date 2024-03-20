@@ -26,7 +26,7 @@ def get_HightestRow2(start_colume, max_colume):
             if grid[r][c] :
                 Index_row = min(Index_row, r)
     
-    return Index_row-1
+    return Index_row if Index_row == n-1 else Index_row -1
 
 
 def fill_Entity(x, y, length):
