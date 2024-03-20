@@ -5,12 +5,11 @@ grid = [
 ]
 
 def get_HightestRow(start_colume, max_colume):
-    Index_colum = start_colume
     Index_row = n-1
 
     for c in range(start_colume, max_colume + 1):
         while True:
-            if not grid[Index_row][Index_colum] :
+            if not grid[Index_row][c] :
                 break
 
             Index_row -= 1
