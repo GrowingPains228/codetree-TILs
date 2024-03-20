@@ -19,7 +19,7 @@ def in_range(x,y):
 
 
 def Move():
-    global second, cur_dir
+    global second, cur_dir, x, y
     nx, ny = x + dxs[cur_dir], y + dys[cur_dir]
     x,y = nx, ny
     second += 1
@@ -45,7 +45,7 @@ def Auto_Rotate():
         return UNESCAPE
 
     # 이동한 위치 오른쪽에 벽이 없는 경우
-    rx, ry = x + dxs[cur_dir + 1], y + dys[cur_dir + 1]
+    rx, ry = x + dxs[(cur_dir + 1) % 4], y + dys[(cur_dir + 1)%4]
     if in_range(rx, ry) and grid[rx][ry] == '.' :
         cur_dir = (cur_dir + 1) % 4
         Move()
