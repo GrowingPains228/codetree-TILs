@@ -44,7 +44,7 @@ def Move(d) :
     index = dirt_dict[d]
     dx, dy = x + dx_arr[index], y + dy_arr[index] #다음 이동할 위치
     # 게임 끝날 조건 입력
-    if not In_Range(dx, dy) or (dx, dy) in snake :
+    if not In_Range(dx, dy) :
         GameOver(time)
     
     # 사과 있으면, 뱀 꼬리 한개 늘여주고
@@ -61,6 +61,8 @@ def Move(d) :
 
     snake[0] = (dx,dy)
 
+    if (dx, dy) in snake[1:] :
+        GameOver(time)
 
 for (d, length) in direction_arr :
     for _ in range(int(length)) :
