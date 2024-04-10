@@ -21,14 +21,17 @@ def get_move_point(x,y) :
     # 상하좌우
     dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1]
 
-    id_x, id_y = x, y
+    # 임의로 초기값으로 위쪽 방향 인덱스를 넣어준다.
+    id_x, id_y = 0,0
+    max_ans = 0
     for dx, dy in zip(dxs, dys) :
         nx, ny = x + dx, y + dy
-        if not In_Range(nx, ny) or grid[nx][ny] <= oriValue :
+        if not In_Range(nx, ny):
             continue
         
         # 더 큰 값을 가진 높으로 우선순위로 초기화
-        (id_x, id_y) = (id_x, id_y) if grid[id_x][id_y] >= grid[nx][ny] else (nx, ny)
+        (id_x, id_y) = (id_x, id_y) if max_ans >= grid[nx][ny] else (nx, ny)
+        max_ans = grid[id_x][id_y]
 
     return (id_x, id_y)
 
