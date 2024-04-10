@@ -28,7 +28,7 @@ def get_move_point(x,y) :
             continue
         
         # 더 큰 값을 가진 높으로 우선순위로 초기화
-        (id_x, id_y) = (id_x, id_y) if grid[id_x][id_y] > grid[nx][ny] else (nx, ny)
+        (id_x, id_y) = (id_x, id_y) if grid[id_x][id_y] >= grid[nx][ny] else (nx, ny)
 
     return (id_x, id_y)
 
@@ -41,7 +41,7 @@ def Simulation(time) :
         next_Count = [[0]*n for _ in range(n)]
         for i in range(n):
             for j in range(n) :
-                if count[i][j] == 1:
+                if count[i][j] > 0:
                     x,y = get_move_point(i, j)
                     next_Count[x][y] += 1
         
