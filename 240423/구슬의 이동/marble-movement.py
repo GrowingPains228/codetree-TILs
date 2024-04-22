@@ -42,8 +42,9 @@ def Move(bead) :
 
 
 def Move_all():
-    global beads
+    global beads, count
     new_beads = []
+    count = [[0]*n for _ in range(n)]
     for bead in beads :
         bead = Move(bead)
         new_beads.append(bead)
@@ -56,7 +57,6 @@ def Move_all():
 def Check_Conflict():
     global beads
     new_beads = []
-
     for bead in beads :
         (orr, x, y, d, v) = bead 
         if count[x][y] <= k :
