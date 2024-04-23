@@ -14,7 +14,7 @@ for i in range(1, m+1):
     r, c, v = int(r)-1, int(c)-1, int(v)
     beads.append((i, r, c, dic, v))
 
-beads.sort(key = lambda x:(-x[4], -x[0]))
+beads.sort(key = lambda x:(x[4], x[0]))
 
 count = [[0]*n for _ in range(n)]
 
@@ -39,7 +39,7 @@ def Move(bead) :
             ny = 2*n - ny - 2
     
         d = 3 - d
-    #print(f"({r},{c}) => ({nx},{ny})")
+    print(f"({r},{c}) => ({nx},{ny})")
     return (orr, nx, ny, d, v)
 
 
