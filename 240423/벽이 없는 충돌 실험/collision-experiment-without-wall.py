@@ -1,67 +1,72 @@
 MAX_RANGE = 1000
 TEST_CASE = int(input())
+grid = [ [-1]* (4*MAX_RANGE) for _ in range(4*MAX_RANGE) ]
+next_grid = [ [-1]* (4*MAX_RANGE) for _ in range(4*MAX_RANGE)]
 ans = []
 beads = []
-next_beads = []
 
 def In_Range(x,y):
-    return 0 <= x and x < 2*MAX_RANGE and 0 <= y and y < 2*MAX_RANGE
+    return 0 <= x and x < 4*MAX_RANGE and 0 <= y and y < 4*MAX_RANGE
 
 
 # 튕기는 경우도 없고, 떨어지는 경우도 고려 안해도됨.
 # 계속 굴러 간다는 의미!
-def Get_NextPos(x, y, d):
-    dxs, dys = [-1, 0, 0, 1], [0, 1, -1, 0]
+def Get_NextPos(x, y, idx):
+    dxs, dys = [0, 1, -1, 0], [1, 0, 0, -1]
+    (w, d) = beads[idx]
     nx, ny = x + dxs[d], y + dys[d]
 
     return (nx, ny)
 
 
 def Move_all():
-    for x in range(2*MAX_RANGE + 1):
-        for y in range(2*MAX_RANGE + 1):
-            for (w, num, d) in beads[x][y]:
-                (next_x, next_y) = Get_NextPos(x,y, d)
+    IsConflict = False
+    for y in range(4*MAX_RANGE):
+        for x in range(4*MAX_RANGE):
+            if grid[y][x] == -1 :
+                continue
 
-                if not In_Range(next_x, next_y):
-                    next_beads[x][y].append(w, num, d)
-                else:
-                    next_beads[next_x][next_y].append(w, num, d)
+            idx = grid[y][x]
+            next_x, next_y = Get_NextPos(x, y, idx)
+            next_idx = next_grid[next_y][next_x]
 
+            if next_idx == -1:
+                next_grid[next_y][next_x] = idx
+            else:
+                IsConflict = True
+                (w1, _), (w2, _) = beads[next_idx], beads[idx]
+                if w1 > w2 :
+                    continue
+                elif w1 < w2 :
+                    next_grid[next_y][next_x] = idx
+                else :
+                    next_grid[next_y][next_x] = max(next_idx, idx)
 
-def Selected_marble():
-    tf = False
-    for x in range(2*MAX_RANGE + 1):
-        for y in range(2*MAX_RANGE + 1):
-            if len(next_beads[x][y]) > 2:
-                next_beads[x][y].sort(key = lambda x : (-x[0], -x[1]))
-
-                while len(next_beads[x][y]) > 2:
-                    next_beads[x][y].pop()
-                    tf = True
-    return tf
+    return IsConflict
 
 def Simulateion(time):
-    conflic_time = -1
-    for t in range(1, time+1):
+    t = -1
+
+    for i in range(1, time+1):
         IsConflict = False
-        next_beads = [
-            [[]for _ in range(2 * MAX_RANGE + 1)]
-            for _ in range(2 * MAX_RANGE + 1)
-        ]
+        # 초기화
+        for y in range(4*MAX_RANGE) :
+            for x in range(4*MAX_RANGE):
+                next_grid[y][x] = -1
+        
+        # 이동 및 충돌 체크
+        IsConflict = Move_all()
 
-        # 모든 구슬을 움직여 준다.
-        Move_all()
+        # 복사
+        for y in range(4*MAX_RANGE) :
+            for x in range(4*MAX_RANGE):
+                grid[y][x] = next_grid[y][x]
+        
+        # 충돌 시간 체크
+        if IsConflict :
+            t = i
 
-        # 모든 구슬 중 충돌이 있었는지 검사하면서 충돌 제거
-        IsConflict = Selected_marble()
-
-        for i in range(n):
-            for j in range(n):
-                beads[i][j] = next_beads[i][j]
-        if IsConflict:
-            conflic_time = t
-    return conflic_time
+    return t
 
 
 dir_mapper = {
@@ -71,21 +76,23 @@ dir_mapper = {
     'D' : 3
 }
 
+
 for _ in range(TEST_CASE):
     n = int(input())
-    beads = [
-        [[]for _ in range(2 * MAX_RANGE + 1)]
-        for _ in range(2 * MAX_RANGE + 1)
-    ]
+    beads = [(-1, -1) for _ in range(n)]
+    for y in range(4*MAX_RANGE) :
+        for x in range(4*MAX_RANGE):
+            grid[y][x] = -1
     # 입력을 받으면서, 최대 거리를 구해준다. => 시간초 산정
-    max_x, max_y, min_x, min_y = MAX_RANGE, MAX_RANGE, MAX_RANGE, MAX_RANGE
+    max_x, max_y, min_x, min_y = -1, -1, 4*MAX_RANGE, 4*MAX_RANGE
     for i in range(n):
         x, y, w, d = tuple(input().split())
         x, y, w = map(int, [x, y, w])
-        x,y = 2*x + MAX_RANGE, 2*y + MAX_RANGE
+        x,y = 2*(x + MAX_RANGE), 2*(y + MAX_RANGE)
         max_x, max_y = max(max_x, x), max(max_y, y)
         min_x, min_y = min(min_x, x), min(min_y, y)
-        beads.append((w, i, dir_mapper[d]))
+        beads[i] = (w, dir_mapper[d])
+        grid[y][x] = i # 인덱스 값 표시
     
     time = max(max_x, max_y) - min(min_x, min_y)
     current_conflicTime = Simulateion(time)
