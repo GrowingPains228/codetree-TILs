@@ -14,6 +14,8 @@ for i in range(1, m+1):
     r, c, v = int(r)-1, int(c)-1, int(v)
     beads.append((i, r, c, dic, v))
 
+beads.sort(key = lambda x:(-x[4], -x[0]))
+
 count = [[0]*n for _ in range(n)]
 
 def In_Range(x,y) :
@@ -26,7 +28,7 @@ def Move(bead) :
     dx, dy = dxs[d], dys[d]
 
     nx, ny = r + dx*v, c + dy*v
-    if not In_Range(nx,ny) :
+    while not In_Range(nx,ny) :
         if d == 0 :
             nx = abs(nx)
         elif d == 3:
@@ -35,7 +37,7 @@ def Move(bead) :
             ny = abs(ny)
         else :
             ny = 2*n - ny - 2
-        
+    
         d = 3 - d
     #print(f"({r},{c}) => ({nx},{ny})")
     return (orr, nx, ny, d, v)
