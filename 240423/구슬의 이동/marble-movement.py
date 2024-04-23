@@ -1,83 +1,89 @@
 n, m, t, k = tuple(map(int, input().split()))
-mapper = {
-    'U' : 0,
-    'R' : 1,
-    'L' : 2,
-    'D' : 3
+grid = [
+    [[] for _ in range(n)]
+    for _ in range(n)
+]
+
+next_grid = [
+    [[] for _ in range(n)]
+    for _ in range(n)
+]
+
+
+def In_Range(x,y):
+    return 0 <= x and x < n and 0 <= y and y < n
+
+
+def next_pos(x, y, vnum, move_dir):
+    dxs, dys = [-1, 0, 0, 1], [0, 1, -1, 0]
+
+    # vnum 횟수만큼 이동한 이후의 위치를 반환
+    for _ in range(vnum):
+        nx, ny = x + dxs[move_dir], y + dys[move_dir]
+
+        # 만약 벽에 부딪히면 
+        # 방향을 바꾼 뒤 이동
+        if not In_Range(nx, ny) :
+            move_dir = 3 - move_dir
+            nx, ny = x + dxs[move_dir], y + dys[move_dir]
+        
+        x, y = nx, ny
+    
+    return (x, y, move_dir)
+
+def move_all():
+    for x in range(n):
+        for y in range(n):
+            for v, num, move_dir in grid[x][y]:
+                next_x, next_y, next_dir = next_pos(x,y, v, move_dir)
+                next_grid[next_x][next_y].append((v, num, next_dir))
+    
+
+def select_marbles():
+    for i in range(n):
+        for j in range(n):
+            if len(next_grid[i][j]) >= k:
+                next_grid[i][j].sort(key = lambda x : (-x[0], -x[1]))
+                while len(next_grid[i][j]) > k:
+                    next_grid[i][j].pop()
+
+
+def simulate():
+    # Step1. next_grid를 초기화합니다.
+    for i in range(n):
+        for j in range(n):
+            next_grid[i][j] = []
+    
+    # Step2. 구슬들을 전부 움직인다.
+    move_all()
+
+    # Step3. 각 칸마다 구슬이 최대 k개만 있도록 조정한다.
+    select_marbles()
+
+    # Step4. next_grid 값을 grid로 옮겨준다.
+    for i in range(n):
+        for j in range(n):
+            grid[i][j] = next_grid[i][j]
+
+dir_mapper = {
+    'U':0,
+    'R':1,
+    'L':2,
+    'D':3
 }
 
-beads = []
-new_beads= []
-for i in range(1, m+1):
-    (r, c, d, v) = tuple(input().split())
-    dic = mapper[d]
-    r, c, v = int(r)-1, int(c)-1, int(v)
-    beads.append((i, r, c, dic, v))
+for i in range(m):
+    r,c,d,v = tuple(input().split())
+    r, c, v = tuple(map(int, [r,c,v]))
 
-beads.sort(key = lambda x:(x[4], x[0]))
+    grid[r-1][c-1].append((v, i+1, dir_mapper[d]))
 
-count = [[0]*n for _ in range(n)]
+for _ in range(t):
+    simulate()
 
-def In_Range(x,y) :
-    return x >= 0 and x < n and y >= 0 and y < n
-
-# 이동 하는건 문제 없음.
-def Move(bead) :
-    (orr, r,c,d,v) = bead
-    dxs, dys = [-1, 0, 0, 1], [0, 1, -1, 0]
-    dx, dy = dxs[d], dys[d]
-
-    nx, ny = r + dx*v, c + dy*v
-    while not In_Range(nx,ny) :
-        if d == 0 :
-            nx = abs(nx)
-        elif d == 3:
-            nx = 2*n - nx - 2
-        elif d == 2 :
-            ny = abs(ny)
-        else :
-            ny = 2*n - ny - 2
-    
-        d = 3 - d
-    #print(f"({r},{c}) => ({nx},{ny})")
-    return (orr, nx, ny, d, v)
-
-
-def Move_all():
-    global beads, count
-    new_beads = []
-    count = [[0]*n for _ in range(n)]
-    for bead in beads :
-        bead = Move(bead)
-        new_beads.append(bead)
-        (_ , x, y, _, _) = bead
-        count[x][y] += 1
-
-    beads = new_beads[:]
-
-
-def Check_Conflict():
-    global beads
-    new_beads = []
-    for bead in beads :
-        (orr, x, y, d, v) = bead 
-        if count[x][y] <= k :
-            new_beads.append(bead)
-            continue
-
-        count[x][y] -= 1
-        new_beads.append((orr, x, y, d, -1))
-            
-    beads = [
-        (orr, x, y, d, v) for (orr, x, y, d, v) in new_beads if v != -1
-    ]
-
-
-def simulation():
-    for _ in range(t):
-        Move_all()
-        Check_Conflict()
-
-
-simulation()
-print(len(beads))
+ans = sum([
+    len(grid[i][j])
+    for i in range(n)
+    for j in range(n)
+])
+print(ans)
