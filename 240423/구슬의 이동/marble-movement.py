@@ -39,7 +39,7 @@ def Move(bead) :
             ny = 2*n - ny - 2
     
         d = 3 - d
-    print(f"({r},{c}) => ({nx},{ny})")
+    #print(f"({r},{c}) => ({nx},{ny})")
     return (orr, nx, ny, d, v)
 
 
