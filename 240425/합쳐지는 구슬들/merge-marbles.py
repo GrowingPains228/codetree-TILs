@@ -24,6 +24,7 @@ dir_mapper = {
 for i in range(1,m +1):
     r, c, dirr, w = tuple(input().split())
     r, c, w = map(int, [r, c, w])
+    max_weight = max(max_weight, w)
     grid[r-1][c-1].append((i, w, dir_mapper[dirr]))
 
 # 범위 체크 함수
@@ -70,6 +71,8 @@ def Combine(marble1, marble2):
     (num2, weight2, dirr2) = marble2
     sum_weight = weight1 + weight2
     new_marble = (num1, sum_weight, dirr1) if num1 > num2 else (num2, sum_weight, dirr2)
+
+    # 가장 무거운 구슬의 무게 업데이트
     max_weight = max(max_weight, sum_weight)
     return new_marble
 
@@ -82,10 +85,12 @@ def Coordinate():
             # 일단 하나 꺼낸 후, 비교해 가면서 합쳐준다.
             if IsCrash(r,c):
                 new_marble = next_grid[r][c].pop()
+                
                 while len(next_grid[r][c]) > 0 :
                     new_marble = Combine(new_marble, next_grid[r][c].pop())
                 
                 next_grid[r][c].append(new_marble)
+
 
 def simulate():
     global grid, next_grid
@@ -111,6 +116,5 @@ sum_ans = 0
 for i in range(n):
     for j in range(n):
         sum_ans += len(grid[i][j])
-
 
 print(sum_ans, max_weight)
