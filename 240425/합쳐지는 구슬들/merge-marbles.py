@@ -1,3 +1,5 @@
+import copy
+
 # 입력
 n, m, t = tuple(map(int, input().split()))
 max_weight = 0
@@ -99,7 +101,7 @@ def simulate():
     Coordinate()
 
     # 복사
-    grid = next_grid
+    grid = copy.deepcopy(next_grid)
 
 
 for _ in range(t) :
