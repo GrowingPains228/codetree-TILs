@@ -1,3 +1,6 @@
+import sys
+ans = -sys.maxsize
+
 string_arr = list(input())
 string_length = len(string_arr)
 string_mapper = {
@@ -9,7 +12,6 @@ string_mapper = {
     'f' : 5
 }
 map_arr = [0]*6
-ans = 0
 
 def calculate():
     idx1 = string_mapper[string_arr[0]]
