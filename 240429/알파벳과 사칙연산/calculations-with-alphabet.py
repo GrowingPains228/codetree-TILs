@@ -8,7 +8,7 @@ string_mapper = {
     'e' : 4,
     'f' : 5
 }
-map_arr = [0]*5
+map_arr = [0]*6
 ans = 0
 
 def calculate():
@@ -35,7 +35,7 @@ def operations(result, op, target):
 
 def Recursion(num):
     global ans
-    if num == 5:
+    if num == 6:
         ans = max(ans, calculate())
         return
 
