@@ -1,49 +1,40 @@
 import sys
 ans = -sys.maxsize
+# 변수 선언 및 입력
+n = 6
+expression = input()
+num = [0 for _ in range(n)]
 
-string_arr = list(input())
-string_length = len(string_arr)
-string_mapper = {
-    'a' : 0,
-    'b' : 1,
-    'c' : 2,
-    'd' : 3,
-    'e' : 4,
-    'f' : 5
-}
-map_arr = [0]*6
-
-def calculate():
-    idx1 = string_mapper[string_arr[0]]
-    result = map_arr[idx1]
-
-    for i in range(1,string_length,2) :
-        (op, str2) = string_arr[i], string_arr[i+1]
-        idx = string_mapper[str2]
-        target = map_arr[idx]
-        result = operations(result, op, target)
-
-    return result
+def conv(idx):
+    return num[ord(expression[idx]) - ord('a')]
 
 
-def operations(result, op, target):
-    if op == '+':
-        return result + target
-    elif op == '-':
-        return result - target
-    else:
-        return result * target
+def cal():
+    length = len(expression)
+    value = conv(0)
+    for i in range(2, length, 2):
+        if expression[i -1] == '+':
+            value += conv(i)
+        elif expression[i-1] == '-':
+            value -= conv(i)
+        else:
+            value *= conv(i)
+    return value
 
 
-def Recursion(num):
+# 'a' 부터 'f' 까지 순서대로
+# 0부터 5번째 index까지의 값을
+# 1~4 중에 하나로 채운다.
+def find_max(cnt):
     global ans
-    if num == 6:
-        ans = max(ans, calculate())
+
+    if cnt == n:
+        ans = max(ans, cal())
         return
-
+    
     for i in range(1,5):
-        map_arr[num] = i
-        Recursion(num+1)
+        num[cnt] = i
+        find_max(cnt+1)
 
-Recursion(0)
+find_max(0)
 print(ans)
