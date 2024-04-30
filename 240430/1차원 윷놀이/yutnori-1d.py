@@ -29,7 +29,6 @@ def choose(curr_num):
             move_arr.append(score)
             player_state_Array[i] -= score
 
-        choose(curr_num + 1)
 
 choose(0)
 print(ans)
