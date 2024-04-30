@@ -13,7 +13,8 @@ def recursion_Jump(idx, cnt):
         return
 
     for i in range(1, jump_arr[idx]+1):
-         recursion_Jump(idx+i, cnt + 1)
+        if idx+i < n:
+            recursion_Jump(idx+i, cnt + 1)
 
 
 recursion_Jump(0, 0)
