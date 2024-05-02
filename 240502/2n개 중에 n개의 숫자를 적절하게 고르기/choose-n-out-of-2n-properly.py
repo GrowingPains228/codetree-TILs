@@ -2,27 +2,20 @@ import sys
 
 n = int(input())
 arr = list(map(int, input().split()))
-total_score = sum(arr)
-ans_arr = []
 ans = sys.maxsize
 
 
-# n 개만 골아서
-# 전체 합계에서 n개만 뽑은 리스트의 합계를 뺀 값을 계산해주면 됨
-def sum_all(curr_num, idx):
+def find_min(idx, cnt, diff):
     global ans
-    if curr_num == n:
-        ans = min(ans, abs(total_score - 2 * sum(ans_arr)))
+
+    if idx == 2*n:
+        if cnt == n:
+            ans = min(ans, abs(diff))
         return
 
-    if idx >= 2*n:
-        return
-
-    ans_arr.append(arr[idx])
-    sum_all(curr_num + 1, idx + 1)
-    ans_arr.pop()
-    sum_all(curr_num, idx + 1)
+    find_min(idx+1, cnt+1, diff + arr[idx])
+    find_min(idx+1, cnt, diff-arr[idx])
 
 
-sum_all(0, 0)
+find_min(0, 0, 0)
 print(ans)
