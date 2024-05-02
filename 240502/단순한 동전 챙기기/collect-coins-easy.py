@@ -23,6 +23,7 @@ coin_pos_arr.sort(key=lambda x: x[0]) # 미리 정렬해 놓으면, 순서대로
 cnt_coin = len(coin_pos_arr)
 ans = sys.maxsize
 
+
 # 아이디어 :
 # 시작점에서 3 구간을 들렀다가 마지막 도착지점으로 가야함
 # 일단 시작지점과 도착지점을 알아야함. => 어딘가에 넣어놓고
@@ -37,22 +38,23 @@ def cal_distance(pos1, pos2):
     return abs(x1-x2) + abs(y1-y2)
 
 
-def find_coin_Path(cnt_coin, curr_pos, curr_idx, curr_distance):
-    global ans
-    if cnt_coin == GOAL_COIN+1:
-        _, x, y = coin_pos_arr[curr_idx]
-        ans = min(ans, curr_distance + cal_distance((x, y), end_pos))
+def find_coin_Path(count_coin, curr_pos, curr_idx, curr_distance):
+    global ans, cnt_coin
+
+    if count_coin == GOAL_COIN+1:
+        ans = min(ans, curr_distance + cal_distance(curr_pos, end_pos))
         return
 
+    # 범위 넘어 가면 리턴
     if curr_idx == cnt_coin:
         return
 
     coin_num, nx, ny = coin_pos_arr[curr_idx]
     #선택 했을때,
-    find_coin_Path(cnt_coin + 1, (nx, ny), curr_idx + 1, curr_distance + cal_distance((nx, ny), curr_pos))
+    find_coin_Path(count_coin + 1, (nx, ny), curr_idx + 1, curr_distance + cal_distance((nx, ny), curr_pos))
 
     # 선택 안 했을때, 현재 위치 그대로에서 다음 코인
-    find_coin_Path(cnt_coin, curr_pos, curr_idx + 1, curr_distance)
+    find_coin_Path(count_coin, curr_pos, curr_idx + 1, curr_distance)
 
 
 if len(coin_pos_arr) < 3:
