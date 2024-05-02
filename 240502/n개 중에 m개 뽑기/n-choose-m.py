@@ -15,9 +15,8 @@ def Choose(curr_num, value):
         return
 
     for i in range(value, N + 1):
-        if curr_num == 0 or ans[-1] < i:
-            ans.append(i)
-            Choose(curr_num+1, i+1)
-            ans.pop()
+        ans.append(i)
+        Choose(curr_num+1, i+1)
+        ans.pop()
 
 Choose(0, 1)
