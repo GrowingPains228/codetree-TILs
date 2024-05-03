@@ -13,7 +13,8 @@ ans = sys.maxsize
 def move_go(curr_num, curr_idx, path_cnt):
     global ans
     if curr_num == n-1:
-        ans = min(ans, path_cnt + grid[curr_idx][0])
+        if grid[curr_idx][0] != 0:
+            ans = min(ans, path_cnt + grid[curr_idx][0])
         return
 
     for i in range(1, n):
