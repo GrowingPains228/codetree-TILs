@@ -17,7 +17,7 @@ def move_go(curr_num, curr_idx, path_cnt):
         return
 
     for i in range(1, n):
-        if visited[i]:
+        if visited[i] or grid[curr_idx][i] == 0:
             continue
 
         visited[i] = True
