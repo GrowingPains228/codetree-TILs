@@ -6,41 +6,30 @@ grid = [
 visited_x = [False]*n
 visited_y = [False]*n
 ans = 0
-ans_list = list()
 
 
-def all_sum():
-    sum_all = 0
-    for x, y in ans_list:
-        sum_all += grid[x][y]
-
-    return sum_all
-
-
-def choose(curr_num):
+def choose(curr_num, sum_cnt):
     global ans
     if curr_num == n:
-        ans = max(ans, all_sum())
+        ans = max(ans, sum_cnt)
         return
 
-    for i in range(n):
-        if visited_x[i]:
+    visited_x[curr_num] = True
+
+    for j in range(n):
+        if visited_y[j]:
             continue
 
-        for j in range(n):
-            if visited_y[j]:
-                continue
+        visited_y[j] = True
+        sum_cnt += grid[curr_num][j]
 
-            visited_x[i] = True
-            visited_y[j] = True
-            ans_list.append((i, j))
+        choose(curr_num+1, sum_cnt)
 
-            choose(curr_num+1)
+        visited_y[j] = False
+        sum_cnt -= grid[curr_num][j]
 
-            ans_list.pop()
-            visited_x[i] = False
-            visited_y[j] = False
+    visited_x[curr_num] = False
 
 
-choose(0)
+choose(0, 0)
 print(ans)
