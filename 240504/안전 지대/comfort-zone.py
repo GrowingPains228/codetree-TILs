@@ -39,7 +39,7 @@ def dfs(x, y, k):
 def simulation():
     global visited
 
-    ans_k, ans_cnt = 0, 0
+    ans_k, ans_cnt = 1, 0
     for height in range(MIN_RANGE, MAX_RANGE+1):
         # 초기화
         visited = [
