@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(5000)
+
 n, m = tuple(map(int, input().split()))
 grid = [
     list(map(int, input().split()))
@@ -10,37 +13,40 @@ visited = [
     [False for _ in range(m)]
     for _ in range(n)
 ]
+k = 1
 
 
 def In_range(x,y):
     return 0 <= x < n and 0 <= y < m
 
 
-def can_go(x, y, k):
+def can_go(x, y):
+    global k
     if not In_range(x,y):
         return False
 
-    if grid[x][y] <= k or visited[x][y] :
+    if grid[x][y] <= k or visited[x][y]:
         return False
 
     return True
 
 
-def dfs(x, y, k):
+def dfs(x, y):
     dxs, dys = [1, -1, 0, 0], [0, 0, 1, -1]  # 아래, 위, 왼쪽, 오른쪽
 
     visited[x][y] = True
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
-        if can_go(nx, ny, k):
-            dfs(nx, ny, k)
+        if can_go(nx, ny):
+            dfs(nx, ny)
 
 
 def simulation():
-    global visited
+    global visited, k
 
     ans_k, ans_cnt = 1, 0
     for height in range(1, MAX_RANGE+1):
+        k = height
         # 초기화
         visited = [
             [False for _ in range(m)]
@@ -53,7 +59,7 @@ def simulation():
             for j in range(m):
                 if grid[i][j] > height and not visited[i][j]:
                     cnt += 1
-                    dfs(i, j, height)
+                    dfs(i, j)
 
         # 영역을 다 돌았으면 갯수 갱신
         if ans_cnt < cnt:
