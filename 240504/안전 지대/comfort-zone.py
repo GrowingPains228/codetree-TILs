@@ -4,8 +4,8 @@ grid = [
     for _ in range(n)
 ]
 # K의 범위는 가능 큰 높이 만큼 으로 설정
-MAX_RANGE = 100
-MIN_RANGE = 1
+MAX_RANGE = max([max(row) for row in grid])
+MIN_RANGE = min([min(row) for row in grid])
 visited = [
     [False for _ in range(m)]
     for _ in range(n)
@@ -20,15 +20,15 @@ def can_go(x, y, k):
     if not In_range(x,y):
         return False
 
-    if visited[x][y] or grid[x][y] <= k:
+    if grid[x][y] <= k or visited[x][y] :
         return False
 
     return True
 
 
 def dfs(x, y, k):
-    dxs, dys = [1, -1, 0, 0], [0, 0, 1, -1]  # 아래, 위, 왼쪽, 오른쪽 만 보면됨
-    
+    dxs, dys = [1, -1, 0, 0], [0, 0, 1, -1]  # 아래, 위, 왼쪽, 오른쪽
+
     visited[x][y] = True
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
@@ -59,6 +59,9 @@ def simulation():
         if ans_cnt < cnt:
             ans_cnt = cnt
             ans_k = height
+        
+        if cnt == 0:
+            break
 
     return ans_k, ans_cnt
 
