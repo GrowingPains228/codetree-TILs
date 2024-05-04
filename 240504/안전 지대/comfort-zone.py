@@ -27,7 +27,7 @@ def can_go(x, y, k):
 
 
 def dfs(x, y, k):
-    dxs, dys = [1, 0, 0], [0, 1, -1] # 아래, 왼쪽, 오른쪽 만 보면됨
+    dxs, dys = [1, -1, 0, 0], [0, 0, 1, -1] # 아래, 왼쪽, 오른쪽 만 보면됨
 
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
