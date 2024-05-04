@@ -5,7 +5,7 @@ grid = [
 ]
 # K의 범위는 가능 큰 높이 만큼 으로 설정
 MAX_RANGE = max([max(row) for row in grid])
-MIN_RANGE = min([min(row) for row in grid])
+MIN_RANGE = 1
 visited = [
     [False for _ in range(m)]
     for _ in range(n)
@@ -40,7 +40,7 @@ def simulation():
     global visited
 
     ans_k, ans_cnt = 1, 0
-    for height in range(MIN_RANGE, MAX_RANGE+1):
+    for height in range(1, MAX_RANGE+1):
         # 초기화
         visited = [
             [False for _ in range(m)]
@@ -59,7 +59,7 @@ def simulation():
         if ans_cnt < cnt:
             ans_cnt = cnt
             ans_k = height
-        
+
         if cnt == 0:
             break
 
