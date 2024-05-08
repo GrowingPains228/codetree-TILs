@@ -78,7 +78,8 @@ def selected_city(curr_cnt, curr_idx):
     if curr_cnt == k:
         bfs()
         ans_cnt = max(ans_cnt, cnt_in_bfs)
-
+        return
+        
     if curr_idx == n*n:
         return
 
