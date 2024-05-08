@@ -33,8 +33,6 @@ backtracking_grid = [
     (i, j) for j in range(n)
     for i in range(n)
 ]
-visited_Backtracking = [[False] * (n*n)]
-
 
 def in_range(x,y):
     return 0 <= x < n and 0 <= y < n
@@ -58,8 +56,8 @@ def bfs():
 
     initialize()
 
-    for elem in selected_group:
-        x, y = elem
+    for vertex in selected_group:
+        x, y = vertex
         bfs_queue.append((x, y))
         visited[x][y] = True
         cnt_in_bfs += 1
@@ -77,10 +75,11 @@ def bfs():
 def selected_city(curr_cnt, curr_idx):
     global ans_cnt, cnt_in_bfs
 
+    if curr_cnt == k:
+        bfs()
+        ans_cnt = max(ans_cnt, cnt_in_bfs)
+
     if curr_idx == n*n:
-        if curr_cnt == k:
-            bfs()
-            ans_cnt = max(ans_cnt, cnt_in_bfs)
         return
 
     next_vertex = backtracking_grid[curr_idx]
