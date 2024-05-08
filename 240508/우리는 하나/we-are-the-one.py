@@ -78,11 +78,9 @@ def selected_city(curr_cnt, curr_idx):
     global ans_cnt, cnt_in_bfs
 
     if curr_idx == n*n:
-        return
-
-    if curr_cnt == k:
-        bfs()
-        ans_cnt = max(ans_cnt, cnt_in_bfs)
+        if curr_cnt == k:
+            bfs()
+            ans_cnt = max(ans_cnt, cnt_in_bfs)
         return
 
     next_vertex = backtracking_grid[curr_idx]
