@@ -43,13 +43,8 @@ def in_range(x,y):
 
 
 def can_go(x, y):
-    if not in_range(x, y) or visited[x][y]:
-        return False
-
-    if grid[x][y] == Element.WALL.value:
-        return False
-
-    return True
+    return (in_range(x, y) and not visited[x][y]
+            and (grid[x][y] == Element.MOVE_ABLE.value or grid[x][y] == Element.BLOCK_RAIN.value))
 
 
 def push(x,y,s):
@@ -58,8 +53,10 @@ def push(x,y,s):
     step[x][y] = s
 
 
-def bfs():
+def bfs(ori_x, ori_y):
     dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1]
+    isArrive = False
+
     while queue:
         x, y = queue.popleft()
         for dx, dy in zip(dxs, dys):
@@ -67,6 +64,11 @@ def bfs():
             if can_go(nx,ny):
                 push(nx, ny, step[x][y] + 1)
 
+                if grid[nx][ny] == Element.BLOCK_RAIN.value:
+                    ans_grid[ori_x][ori_y] = step[nx][ny]
+                    isArrive = True
+
+    return isArrive
 
 def cal():
     # 초기화
@@ -79,15 +81,9 @@ def cal():
                 step[i][j] = 0
 
         push(x, y, 0)
-        bfs()
+        isArrive = bfs(x,y)
 
-        is_Arrive = False
-        for (v_x, v_y) in block_rain_group:
-            if visited[v_x][v_y] :
-                ans_grid[x][y] = min(ans_grid[x][y], step[v_x][v_y]) if ans_grid[x][y] != 0 else step[v_x][v_y]
-                is_Arrive = True
-
-        if not is_Arrive:
+        if not isArrive:
             ans_grid[x][y] = -1
 
 
