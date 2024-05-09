@@ -64,7 +64,7 @@ def bfs(ori_x, ori_y):
                 push(nx, ny, step[x][y] + 1)
 
                 if grid[nx][ny] == Element.BLOCK_RAIN.value:
-                    ans_grid[ori_x][ori_y] = step[nx][ny]
+                    ans_grid[ori_x][ori_y] = min(ans_grid[ori_x][ori_y], step[nx][ny]) if ans_grid[ori_x][ori_y] else step[nx][ny]
                     isArrive = True
 
     return isArrive
