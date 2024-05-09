@@ -43,8 +43,7 @@ def in_range(x,y):
 
 
 def can_go(x, y):
-    return (in_range(x, y) and not visited[x][y]
-            and (grid[x][y] == Element.MOVE_ABLE.value or grid[x][y] == Element.BLOCK_RAIN.value))
+    return in_range(x, y) and not visited[x][y] and grid[x][y] != Element.WALL.value
 
 
 def push(x,y,s):
