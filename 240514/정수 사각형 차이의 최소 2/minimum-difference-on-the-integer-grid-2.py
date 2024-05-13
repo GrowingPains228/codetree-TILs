@@ -42,8 +42,15 @@ for i in range(1, n):
             if dp_max[i][j-1] > dp_max[i-1][j]:
                 dp_max[i][j] = max(grid[i][j], dp_max[i-1][j])
                 dp_min[i][j] = min(grid[i][j], dp_min[i - 1][j])
-            else:
+            elif dp_max[i][j-1] < dp_max[i-1][j]:
                 dp_max[i][j] = max(grid[i][j], dp_max[i][j - 1])
                 dp_min[i][j] = min(grid[i][j], dp_min[i][j - 1])
-
+            else:
+                if dp_min[i][j-1] >= dp_min[i-1][j]:
+                    dp_max[i][j] = max(grid[i][j], dp_max[i - 1][j])
+                    dp_min[i][j] = min(grid[i][j], dp_min[i - 1][j])
+                else:
+                    dp_max[i][j] = max(grid[i][j], dp_max[i][j - 1])
+                    dp_min[i][j] = min(grid[i][j], dp_min[i][j - 1])
+                    
 print(dp_max[n-1][n-1] - dp_min[n-1][n-1])
