@@ -32,4 +32,4 @@ for i in range(n):
     for j in range(n):
         find_path(i, j)
 
-print(max(max(row for row in memo)))
+print(max([max(row) for row in memo]))
