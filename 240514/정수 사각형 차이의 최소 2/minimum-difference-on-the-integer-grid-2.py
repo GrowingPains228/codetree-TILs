@@ -30,6 +30,7 @@ def sol(lower_bound):
             if grid[i][j] < lower_bound:
                 grid[i][j] = INT_MAX
     
+    initialize()
 
     for i in range(1,n):
         for j in range(1,n):
@@ -39,7 +40,7 @@ def sol(lower_bound):
 
 
 for lower_bound in range(1,MAX_K+1):
-    initialize()
+
     upper_bound = sol(lower_bound)
 
     if upper_bound == INT_MAX:
