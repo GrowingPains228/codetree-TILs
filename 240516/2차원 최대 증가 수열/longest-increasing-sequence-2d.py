@@ -31,9 +31,5 @@ for i in range(1, n):
 
                 dp[i][j] = max(dp[i][j], dp[lx][ly] + 1)
 
-for row in dp:
-    for elem in row:
-        print(elem, end=' ')
-    print()
 
 print(max([max(row) for row in dp]))
