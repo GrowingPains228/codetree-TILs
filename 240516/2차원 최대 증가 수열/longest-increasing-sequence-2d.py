@@ -12,8 +12,8 @@ dp = [[0] * m for _ in range(n)]
 
 
 def initialize():
-    for i in range(m):
-        for j in range(n):
+    for i in range(n):
+        for j in range(m):
             dp[i][j] = 0
 
     dp[0][0] = 1
@@ -30,5 +30,10 @@ for i in range(1, n):
                     continue
 
                 dp[i][j] = max(dp[i][j], dp[lx][ly] + 1)
+
+for row in dp:
+    for elem in row:
+        print(elem, end=' ')
+    print()
 
 print(max([max(row) for row in dp]))
