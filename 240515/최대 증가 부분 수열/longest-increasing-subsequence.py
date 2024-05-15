@@ -5,7 +5,7 @@ MAX_VALUE = 10000
 
 n = int(input())
 a = [0] + list(map(int, input().split()))
-dp = [INT_MIN] * (MAX_VALUE + 1)
+dp = [INT_MIN] * (max(a) + 1)
 
 dp[0] = 0
 
