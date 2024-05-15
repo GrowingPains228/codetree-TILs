@@ -1,20 +1,18 @@
+import sys
+
+INT_MIN = -sys.maxsize
+MAX_VALUE = 10000
+
 n = int(input())
-arr = list(map(int, input().split()))
-dp = [0]*n
+a = [0] + list(map(int, input().split()))
+dp = [INT_MIN] * (MAX_VALUE + 1)
 
+dp[0] = 0
 
-def initialize():
-    for i in range(n):
-        dp[i] = 0
-    
-    dp[0] = 1
-
-
-initialize()
-for i in range(1,n):
-    dp[i] = 1
-    for j in range(0, i):
-        if arr[j] < arr[i]:
-            dp[i] = max(dp[i], dp[j] + 1)
+for i in range(1,n+1):
+    j = a[i]
+    for l in range(a[i]):
+        if dp[l] != INT_MIN:
+            dp[j] = max(dp[j], dp[l]+1)
 
 print(max(dp))
