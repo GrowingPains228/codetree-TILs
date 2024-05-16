@@ -1,23 +1,27 @@
 n = int(input())
 arr = list(map(int, input().split()))
 
-dp = [1]* (n)
+dp = [
+    [0]* 2
+    for _ in range(n)
+]
 
 for i in range(n):
-    for j in range(i):
-        if arr[i] > arr[j]:
-            dp[i] = max(dp[i], dp[j] + 1)
+    dp[i][0] = 1
+    dp[i][1] = 1
 
-arr = arr[::-1]
-dp_re = [1]* (n)
-for i in range(n):
     for j in range(i):
-        if arr[i] > arr[j]:
-            dp_re[i] = max(dp_re[i], dp_re[j] + 1)
+        if arr[i] > arr[j] :
+            dp[i][0] = max(dp[i][0], dp[j][0] + 1)
+        
 
-dp_re.reverse()
+        if arr[i] < arr[j] :
+            dp[i][1] = max(dp[i][1], dp[j][1] + 1)
+
+    dp[i][1] = max(dp[i][1], dp[i][0])
+
 ans = 0
 for i in range(n):
-    ans = max(ans, dp[i] + dp_re[i] - 1)
+    ans = max(ans, dp[i][1])
 
 print(ans)
