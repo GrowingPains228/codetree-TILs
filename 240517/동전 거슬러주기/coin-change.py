@@ -22,4 +22,5 @@ for i in range(1, m + 1):
         
         dp[i] = min(dp[i], dp[i - coins[j]] + 1)
 
-print(dp[m])
+
+print(dp[m] if dp[m] != MAX_INT else -1)
