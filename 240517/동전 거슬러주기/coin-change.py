@@ -1,29 +1,33 @@
 import sys
-sys.setrecursionlimit(10000)
-
 INT_MAX = sys.maxsize
 
 n, m = tuple(map(int, input().split()))
-
 coin = [0] + list(map(int, input().split()))
 
-ans = INT_MAX
+memo = [INT_MAX] * (m+1)
 
-def find_min_cnt(sum, cnt):
-    global ans
-
-    if sum == m:
-        ans = min(ans, cnt)
-        return
+def find_min_cnt(sum):
+    if memo[sum] != INT_MAX:
+        return memo[sum]
     
+    # 합이 m이 되면 동전이 추가적으로 필요 없으므로
+    # 필요한 동전의 수 0을 반환한다.
+    if sum == m:
+        memo[sum] = 0
+        return 0
+
+    ans = INT_MAX
     for i in range(1, n+1):
         if sum + coin[i] <= m:
-            find_min_cnt(sum + coin[i], cnt+1)
+            ans = min(ans, find_min_cnt(sum + coin[i]) + 1)
+        
+    memo[sum] = ans
+    return ans
 
 
-find_min_cnt(0,0)
+ans_sum = find_min_cnt(0)
 
-if ans == INT_MAX:
+if ans_sum == INT_MAX:
     print(-1)
 else:
-    print(ans)
+    print(ans_sum)
