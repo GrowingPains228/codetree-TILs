@@ -1,23 +1,43 @@
+import sys
+INT_MIN = -sys.maxsize
+
+#변수 입력 및 선언
 n = int(input())
-work_list = [
-    tuple(map(int, input().split()))
-    for _ in range(n)
-]
-dp = [0]*n
-_, _, p = work_list[0]
-dp[0] = p
 
-# 최장 증가 수열을 만들면서
-# 총 돈을 업데이트 해야함.
-for i in range(1,n):
-    s1, e1, p1 = work_list[i]
-    dp[i] = p1
-    for j in range(i):
-        s2, e2, p2 = work_list[j]
+s = [0]* (n+1)
+e = [0]* (n+1)
+p = [0]* (n+1)
 
-        if e2 >= s1:
-            continue
+sorted_works = list()
+
+dp = [INT_MIN]*(n+1)
+
+for i in range(1,n+1):
+    s[i], e[i], p[i] = tuple(map(int, input().split()))
+
+
+def preprocess():
+    for i in range(n+1):
+        sorted_works.append((e[i], i))
+    sorted_works.sort()
+
+
+dp[0] = 0
+preprocess()
+
+max_j = 0
+ptr = 1
+
+for i in range(1, n+1):
+    while sorted_works[ptr][0] < s[i]:
+        j = sorted_works[ptr][1]
+        if dp[j] > dp[max_j]:
+            max_j = j
         
-        dp[i] = max(dp[i], dp[j] + p1)
+        ptr += 1
+
+    dp[i] = max(dp[i], dp[max_j] + p[i])
+    print(dp[i])
+
 
 print(max(dp))
