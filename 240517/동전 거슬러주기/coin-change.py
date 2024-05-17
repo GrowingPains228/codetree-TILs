@@ -1,26 +1,29 @@
 import sys
-MAX_INT = sys.maxsize
-MAX_VALUE = 10000
+sys.setrecursionlimit(10000)
 
-n, m = map(int, input().split())
-coins = [0] + list(map(int, input().split()))
-dp = [0]*(m+1)
+INT_MAX = sys.maxsize
 
+n, m = tuple(map(int, input().split()))
 
-def initialize():
-    for i in range(1, m+1):
-        dp[i] = MAX_INT
+coin = [0] + list(map(int, input().split()))
+
+ans = INT_MAX
+
+def find_min_cnt(sum, cnt):
+    global ans
+
+    if sum == m:
+        ans = min(ans, cnt)
+        return
     
-    dp[0] = 0
+    for i in range(1, n+1):
+        if sum + coin[i] <= m:
+            find_min_cnt(sum + coin[i], cnt+1)
 
 
-initialize()
-for i in range(1, m + 1):
-    for j in range(1,n+1):
-        if  i < coins[j]:
-            continue
-        
-        dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+find_min_cnt(0,0)
 
-
-print(dp[m] if dp[m] != MAX_INT else -1)
+if ans == INT_MAX:
+    print(-1)
+else:
+    print(ans)
