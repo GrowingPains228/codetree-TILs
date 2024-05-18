@@ -22,7 +22,7 @@ for i in range(1, m+1):
         
         dp[i] = dp[i - arr[j]] + 1
 
-if dp[m]:
-    print("Yes")
-else:
+if dp[m] == -1:
     print("No")
+else:
+    print("Yes")
