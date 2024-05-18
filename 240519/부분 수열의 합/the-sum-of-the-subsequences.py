@@ -17,7 +17,7 @@ for i in range(1, m+1):
         if i < arr[j]:
             continue
 
-        if dp[i] == -1:
+        if dp[i - arr[j]] == -1:
             continue
         
         dp[i] = dp[i - arr[j]] + 1
