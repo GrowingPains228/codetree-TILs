@@ -13,7 +13,7 @@ def initialize():
 
 initialize()
 for i in range(1, m+1):
-    for j in range(n):
+    for j in range(n+1):
         if i >= arr[j]:
             if dp[i-arr[j]] == MAX_VALUE:
                 continue
