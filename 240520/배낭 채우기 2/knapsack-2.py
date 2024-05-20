@@ -9,8 +9,9 @@ for _ in range(n):
 
 dp = [INT_MIN] * (m+1)
 dp[0] = 0
-for (weight, value) in jewels:
-    for j in range(1, m+1):
+
+for j in range(1, m+1):
+    for (weight, value) in jewels:
         if weight <= j and dp[j-weight] != INT_MIN:
             dp[j] = max(dp[j], dp[j-weight] + value)
         
