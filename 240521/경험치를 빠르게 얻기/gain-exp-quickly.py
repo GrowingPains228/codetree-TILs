@@ -22,4 +22,4 @@ for i in range(1, MAX_T+1):
         ans_t = i
         break
 
-print(ans_t)
+print(ans_t if ans_t else -1)
