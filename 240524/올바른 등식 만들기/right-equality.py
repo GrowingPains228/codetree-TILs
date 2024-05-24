@@ -20,9 +20,9 @@ for i in range(n):
             dp[i+1][j] = dp[i][j] * 2
         else:
             if j - nums[i] >= 0:
-                dp[i+1][j-nums[i]] = max(dp[i+1][j-nums[i]]+1, dp[i][j])
+                dp[i+1][j-nums[i]] = dp[i+1][j-nums[i]] + dp[i][j]
 
             if j + nums[i] <= MAX_RANGE*2:
-                dp[i+1][j+nums[i]] = max(dp[i+1][j+nums[i]]+1, dp[i][j])
+                dp[i+1][j+nums[i]] = dp[i+1][j+nums[i]] + dp[i][j]
 
 print(dp[n][MAX_RANGE + m])
