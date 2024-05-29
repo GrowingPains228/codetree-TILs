@@ -10,6 +10,7 @@ mapper = {
 dp = [[0]*(k+1) for _ in range(n)]
 # 한번도 안 바꿀 경우는 초기화로 값 넣어주기
 dp[0][0] = 1 if rotation[0] == 'L' else 0
+dp[0][1] = 1 if rotation[0] == 'R' else 0
 for i in range(1, n):
     dp[i][0] = (dp[i-1][0] + 1) if rotation[i] == 'L' else dp[i-1][0]
 
