@@ -11,16 +11,13 @@ dp = [[0]*(k+1) for _ in range(n)]
 # 한번도 안 바꿀 경우는 초기화로 값 넣어주기
 dp[0][0] = 1 if rotation[0] == 'L' else 0
 for i in range(1, n):
-    if rotation[i] == 'L':
-        dp[i][0] = dp[i-1][0] + 1
-    else:
-        dp[i][0] = dp[i-1][0]
+    dp[i][0] = (dp[i-1][0] + 1) if rotation[i] == 'L' else dp[i-1][0]
 
 for i in range(1, n):
     for j in range(1, k+1):
         if j % 2 != mapper[rotation[i]]:
-            continue
-
-        dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j]) + 1
+            dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j])
+        else:
+            dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j]) + 1
 
 print(max(dp[n-1]))
