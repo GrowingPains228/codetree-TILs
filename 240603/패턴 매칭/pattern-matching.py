@@ -3,36 +3,28 @@ p = input().rstrip()
 
 len_s, len_p = len(s), len(p)
 
-dp = [False] * len(s)
-cur_p_index = 0
+dp = [[False]*(len_p+1) for _ in range(len_s+1)]
+s = " " + s
+p = " " + p
 
-for i in range(len_p):
-    tf = False
+dp[0][0] = True
+for j in range(len_p):
+    for i in range(len_s):
+        if not dp[i][j] :
+            continue
+        
+        # '*' 관련해서 판별하려면, 
+        if j != len_p -1 and p[j+2] =='*':
+            dp[i][j+2] = True
 
-    if cur_p_index >= len_s:
-        break
-
-    if p[i] == '*': # 당연히 처음부터 '*' 혼자 주어지지 않는다. 에러 가능성 없음.
-        if 'a' <= p[i-1] <= 'z':
-            while cur_p_index < len_s and s[cur_p_index] == p[i-1]:
-                dp[cur_p_index] = True
-                tf = True
-                cur_p_index += 1
+            for k in range(i+1, len_s + 1):
+                if p[j+1] != '.' and s[k] != p[j+1]:
+                    break
+                dp[k][j+2] = True
+        elif p[j+1] == '.':
+            dp[i+1][j+1] = True
         else:
-            while cur_p_index < len_s:
-                dp[cur_p_index] = True
-                tf = True
-                cur_p_index += 1
-    elif 'a' <= p[i] <= 'z' and s[cur_p_index] == p[i]:
-            dp[cur_p_index] = True
-            tf = True
-            cur_p_index += 1
-    else:
-        dp[cur_p_index] = True
-        tf = True
-        cur_p_index += 1
-    
-    if not tf:
-        break
+            if s[i+1] == p[j+1]:
+                dp[i+1][j+1] = True
 
-print("true" if dp[len_s-1] else "false")
+print("true" if dp[len_s][len_p] else "false")
