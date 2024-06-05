@@ -14,7 +14,6 @@ for elem in arr:
         d[elem] = d[elem] - 1
 
     if (k - elem) in d and d[k - elem] != 0:
-        d[k - elem] = d[k - elem] - 1
-        ans += 1
+        ans += d[k - elem]
 
 print(ans)
