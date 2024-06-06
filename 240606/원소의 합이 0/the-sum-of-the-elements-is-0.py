@@ -22,6 +22,5 @@ for i in range(n):
 
         if diff in dic_CD and dic_CD[diff] != 0:
             ans += dic_CD[diff]
-            dic_CD[diff] = 0
 
 print(ans)
