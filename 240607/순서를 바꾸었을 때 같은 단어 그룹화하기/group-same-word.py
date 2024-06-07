@@ -1,21 +1,10 @@
+from collections import defaultdict
+
 n = int(input())
-dic = dict()
+dic = defaultdict(int)
 
 for _ in range(n):
-    inp = input()
-    inp = sorted(inp)
+    inp = ''.join(sorted(input()))
+    dic[inp] += 1
 
-    string = ""
-    for elem in inp:
-        string += elem
-    
-    if string in dic:
-        dic[string] += 1
-    else:
-        dic[string] = 1
-
-ans = 0
-for value in dic.values():
-    ans = max(ans, value)
-
-print(ans)
+print(max(dic.values()))
