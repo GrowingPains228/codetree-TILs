@@ -9,11 +9,10 @@ for _ in range(k):
     arr.append((a,b))
 
 for i in range(3*k):
-    a,b = arr[i % k]
-    peoplelist[a-1].add(b)
-    peoplelist[b-1].add(a)
-    peoplelist[a-1], peoplelist[b-1] = peoplelist[b-1], peoplelist[a-1]
+    a, b = arr[i % k]
+    peoplelist[pleyerlist[a-1]-1].add(b)
+    peoplelist[pleyerlist[b-1]-1].add(a)
     pleyerlist[a-1], pleyerlist[b-1] = pleyerlist[b-1], pleyerlist[a-1]
 
-for index ,elem in zip(pleyerlist, peoplelist) :
-    print(index, len(elem))
+for elem in peoplelist :
+    print(len(elem))
