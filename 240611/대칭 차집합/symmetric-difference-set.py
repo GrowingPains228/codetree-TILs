@@ -7,14 +7,14 @@ s2 = set()
 for elem in A:
     s1.add(elem)
 
-for eleme in B:
+for elem in B:
     s2.add(elem)
 
 for elem in B:
     if elem in s1:
         s1.remove(elem)
 
-for eleme in A:
+for elem in A:
     if elem in s2:
         s2.remove(elem)
 
