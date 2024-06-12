@@ -1,7 +1,6 @@
 n, m = tuple(map(int, input().split()))
 arr = list(map(int, input().split()))
 
-import sys
 from sortedcontainers import SortedSet
 
 # 비어 있는 의자들 세팅
@@ -11,17 +10,11 @@ for i in range(1, m+1):
 
 ans = 0
 for elem in arr:
-    chair = s.bisect_left(elem)
-    if s[chair] == elem:
-        s.remove(s[chair])
+    chair = s.bisect_right(elem)
+    if len(s) == 0 or chair - 1 < 0:
+        break
+    else :
+        s.remove(s[chair-1])
         ans += 1
-    else:
-        chair -= 1
-        if chair < 0:
-            print(ans)
-            sys.exit()
-        else:
-            s.remove(s[chair])
-            ans += 1
 
 print(ans)
