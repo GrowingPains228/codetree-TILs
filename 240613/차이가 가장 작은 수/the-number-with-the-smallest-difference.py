@@ -12,7 +12,7 @@ for i in range(n//2):
     num1 = arr[i]
     num2 = m + num1
     idx = arr.bisect_right(num2)
-    if idx == n:
+    if idx == len(arr):
         continue
     
     if arr[idx-1] == num2:
