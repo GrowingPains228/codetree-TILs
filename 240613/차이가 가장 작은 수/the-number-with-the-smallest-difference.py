@@ -7,18 +7,15 @@ for _ in range(n):
     num1 = int(input())
     arr.add(num1)
 
-for i in range(len(arr)//2+1):
-    num1 = arr[i]
-    num2 = m + num1
-    idx = arr.bisect_left(num2)
-    if idx == len(arr):
-        continue
+for x in arr:
+    min_idx = arr.bisect_left(m + x)
+    if min_idx != len(arr):
+        ans = min(ans, arr[min_idx] - x)
     
-    if arr[idx] == num2:
-        ans = m
-        break
-    else:
-        ans = min(ans, abs(arr[idx] - num1))
+    # x 보다 m 이상 더 작으면서 가장 큰 값
+    max_idx = arr.bisect_right(x - m) - 1
+    if max_idx >= 0:
+        ans = min(ans, x - arr[max_idx])
 
 if ans == sys.maxsize:
     print(-1)
