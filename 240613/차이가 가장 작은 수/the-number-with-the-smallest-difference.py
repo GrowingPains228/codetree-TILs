@@ -7,7 +7,7 @@ for _ in range(n):
     num1 = int(input())
     arr.add(num1)
 
-for i in range(n//2):
+for i in range(n//2+1):
     num1 = arr[i]
     num2 = m + num1
     idx = arr.bisect_left(num2)
