@@ -1,6 +1,5 @@
 import sys
 from sortedcontainers import SortedSet
-MAX_RANGE = 10**9
 n, m = tuple(map(int, input().split()))
 arr = SortedSet()
 ans = sys.maxsize
@@ -19,7 +18,7 @@ for i in range(n//2):
         ans = m
         break
     else:
-        ans = min(ans, arr[idx]- num1)
+        ans = min(ans, abs(arr[idx] - num1))
 
 if ans == sys.maxsize:
     print(-1)
