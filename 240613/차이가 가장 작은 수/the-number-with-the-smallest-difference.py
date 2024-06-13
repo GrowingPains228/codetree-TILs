@@ -10,11 +10,11 @@ for _ in range(n):
 for i in range(n//2):
     num1 = arr[i]
     num2 = m + num1
-    idx = arr.bisect_right(num2)
+    idx = arr.bisect_left(num2)
     if idx == len(arr):
         continue
     
-    if arr[idx-1] == num2:
+    if arr[idx] == num2:
         ans = m
         break
     else:
