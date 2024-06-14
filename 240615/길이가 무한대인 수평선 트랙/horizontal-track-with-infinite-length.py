@@ -27,16 +27,19 @@ for _ in range(T):
             curr_p = -curr_p + velocity
 
         if curr_p in positionDict:
-            positionDict[curr_p] += 1
+            positionDict[curr_p] = min(positionDict[curr_p], velocity)
         else:
-            positionDict[curr_p] = 1
+            positionDict[curr_p] = velocity
+
         newPlayers.add((curr_p, velocity))
-    
     players.clear()
 
-    for position, _ in positionDict.items():
-        startidx = newPlayers.bisect_left((position, _))
+    for position, v in positionDict.items():
+        startidx = newPlayers.bisect_left((position, v))
         (cur_pos, velocity) = newPlayers[startidx]
         players.add((-cur_pos, velocity))
+
+    if len(players) == 1:
+        break
 
 print(len(players))
