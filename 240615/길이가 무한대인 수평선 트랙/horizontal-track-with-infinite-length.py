@@ -19,7 +19,7 @@ for _ in range(T):
 
         if findidx != len(newPlayers):
             position, new_velocity = newPlayers[findidx]
-            if position <= -curr_p + velocity:
+            if velocity >= new_velocity and position <= -curr_p + velocity:
                 curr_p = position
             else:
                 curr_p = -curr_p + velocity
