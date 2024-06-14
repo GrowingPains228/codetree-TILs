@@ -5,10 +5,14 @@ m_list = list(map(int, input().split()))
 
 for elem in m_list:
     target = arr.bisect_left(elem)
-    if target == len(arr) or target == 0: # 없는 경우
+    if target == len(arr) : # 없는 경우
         print(-1)
         continue
     
+    if target == 0 and arr[target] != elem:
+        print(-1)
+        continue
+
     if arr[target] > elem:
         target -= 1
 
