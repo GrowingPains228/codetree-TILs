@@ -25,7 +25,7 @@ def IsEnd():
 
     for i in range(1, length):
         (p1, v1), (p2, v2) = players[i-1], players[i]
-        if v2 > v1 :
+        if v2 < v1 :
             return False
     
     return True
