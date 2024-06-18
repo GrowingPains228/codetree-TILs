@@ -2,7 +2,7 @@ import heapq
 t = int(input())
 
 for _ in range(t):
-    cur_pop_max = 0
+    cur_pop_max = []
     m = int(input())
     arr = list(map(int, input().split()))
     pq = []
@@ -12,11 +12,11 @@ for _ in range(t):
         heapq.heappush(pq, arr[i])
         if i%2 == 0:
             popitem = heapq.heappop(pq)
-            cur_pop_max = max(cur_pop_max, popitem)
-            if cur_pop_max > pq[0]:
+            heapq.heappush(cur_pop_max, -popitem)
+            if - cur_pop_max[0] > pq[0]:
                 tmp = heapq.heappop(pq)
-                heapq.heappush(pq, cur_pop_max)
-                cur_pop_max = tmp
+                heapq.heappush(pq, -heapq.heappop(cur_pop_max))
+                heapq.heappush(cur_pop_max, -tmp)
                 print(pq[0], end = " ")
             else:
                 print(pq[0], end = " ")
