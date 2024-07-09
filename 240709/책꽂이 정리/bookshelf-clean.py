@@ -72,7 +72,7 @@ class BookCase:
             return None
         
         book = self.head
-
+        self.count -= 1
         # 1개 밖에 없었던 경우
         if self.head.next is None:
             self.head = None
@@ -84,7 +84,6 @@ class BookCase:
         self.head.prev = None
         book.next = None
     
-        self.count -= 1
         return book
     
 
@@ -93,7 +92,7 @@ class BookCase:
             return None
 
         book = self.tail
-
+        self.count -= 1
         # 1개 밖에 없었던 경우
         if self.tail.prev is None:
             self.head = None
@@ -104,7 +103,6 @@ class BookCase:
         self.tail = self.tail.prev
         self.tail.next = None
         book.prev = None
-        self.count -= 1
         return book
 
 
