@@ -9,9 +9,9 @@ for i in range(1, n+1):
     for j in range(1, n+1):
         sumArr[i][j] = myMap[i][j] + sumArr[i-1][j] + sumArr[i][j-1] - sumArr[i-1][j-1]
 
-        if i-k < 1 or j - k < 1:
+        if i-k < 0 or j - k < 0:
             continue
-            
+
         ans = max(ans, sumArr[i][j] - sumArr[i-k][j] - sumArr[i][j-k] + sumArr[i-k][j-k])
 
 print(ans)
