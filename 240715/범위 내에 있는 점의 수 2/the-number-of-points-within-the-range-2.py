@@ -2,7 +2,10 @@ MAX_RANGE = 1000000
 
 
 def get_sum(s, e, lines):
-    return lines[e] - lines[s-1]
+    if s == 0:
+        return lines[e]
+    else:
+        return lines[e] - lines[s-1]
 
 
 if __name__ == "__main__":
