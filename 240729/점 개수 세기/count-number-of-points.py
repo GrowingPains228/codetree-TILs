@@ -13,8 +13,10 @@ qList = list()
 for _ in range(q):
     a, b = tuple(map(int, input().split()))
     qList.append((a, b))
-    sm[a] = False if a not in sm else True
-    sm[b] = False if b not in sm else True
+    if a not in sm:
+        sm[a] = False
+    if b not in sm:
+        sm[b] = False
 
 for index, key in enumerate(sm.keys(), start=1):
     dotToIndex[key] = index
