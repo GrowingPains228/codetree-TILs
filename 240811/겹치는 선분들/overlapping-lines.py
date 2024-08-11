@@ -20,19 +20,13 @@ for (v, d) in lines:
     drawLine(int(v), d)
 
 points.sort()
-
+ans = 0
 sum_result = 0
-stQueue, endPos = deque(), deque()
-for x, v in points: 
-    if sum_result >= k and sum_result + v < k:
-        endPos.append(x)
-    elif sum_result < k and sum_result + v >= k:
-        stQueue.append(x)
+for i, (x, v) in enumerate(points):
+    if sum_result >= k:
+        prev_x, _ = points[i-1]
+        ans += x - prev_x
     
     sum_result += v
 
-ans_length = 0
-for st_x, end_x in zip(stQueue, endPos):
-    ans_length += end_x - st_x
-
-print(ans_length)
+print(ans)
