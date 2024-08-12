@@ -1,6 +1,6 @@
 n, k = map(int, input().split())
 
-ans = 0
+ans = -1
 bombList = dict()
 for i in range(n):
     num = int(input())
