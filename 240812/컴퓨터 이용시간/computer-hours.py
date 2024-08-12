@@ -17,10 +17,10 @@ people = [Person(i) for i in range(0, n+1)]
 useList = [tuple(map(int, input().split())) for _ in range(n)]
 segments = list()
 for index, (p, q) in enumerate(useList, start=1):
-    segments.append((p, 1, people[index]))
-    segments.append((q, -1, people[index]))
+    segments.append((p, 1, index))
+    segments.append((q, -1, index))
 
-# PC 리스트 초기화
+# PC 스택 초기화
 pcList = deque()
 for i in range(n, 0, -1):
     pcList.append(i)
@@ -28,15 +28,15 @@ for i in range(n, 0, -1):
 segments.sort()
 segs = set()
 
-for time, v, person in segments:
+for time, v, index in segments:
     if v == 1:
         # 컴퓨터 사용
-        person.setUsingComputer(pcList.pop())
-        segs.add(person)
+        people[index].setUsingComputer(pcList.pop())
+        segs.add(index)
     else:
-        segs.remove(person)
+        segs.remove(index)
         # 사용하던 컴퓨터 반환
-        pcList.append(person.getUsingComputer())
+        pcList.append(people[index].getUsingComputer())
 
 for i in range(1, n+1):
     print(people[i].getUsingComputer(), end=' ')
