@@ -1,5 +1,4 @@
-from collections import deque
-
+from sortedcontainers import SortedSet
 
 class Person:
     def __init__(self, index):
@@ -20,10 +19,10 @@ for index, (p, q) in enumerate(useList, start=1):
     segments.append((p, 1, index))
     segments.append((q, -1, index))
 
-# PC 스택 초기화
-pcList = deque()
-for i in range(n, 0, -1):
-    pcList.append(i)
+# PC 리스트 초기화
+pcList = SortedSet()
+for i in range(1, n+1):
+    pcList.add(i)
 
 segments.sort()
 segs = set()
@@ -31,12 +30,12 @@ segs = set()
 for time, v, index in segments:
     if v == 1:
         # 컴퓨터 사용
-        people[index].setUsingComputer(pcList.pop())
+        people[index].setUsingComputer(pcList.pop(0))
         segs.add(index)
     else:
         segs.remove(index)
         # 사용하던 컴퓨터 반환
-        pcList.append(people[index].getUsingComputer())
+        pcList.add(people[index].getUsingComputer())
 
 for i in range(1, n+1):
     print(people[i].getUsingComputer(), end=' ')
