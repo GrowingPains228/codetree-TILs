@@ -12,7 +12,7 @@ j = 0
 ans = 0
 sum_val = 0
 for i in range(input_Max_x+1):
-    while j+1 <= input_Max_x and j <= i + 2*k:
+    while j <= input_Max_x and j <= i + 2*k:
         sum_val += line_list[j]
         j += 1
 
