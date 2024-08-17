@@ -4,16 +4,15 @@ n = int(input())
 arr = list(map(int, input().split()))
 arr.sort()
 
+left, right = 0, n-1
 ans = sys.maxsize
-j = n - 1
-for i in range(n):
-    while j >= 0 and abs(arr[i]) < abs(arr[j]):
-        ans = min(ans, arr[j] + arr[i])
-        j -= 1
+ans = min(ans, abs(arr[right] + arr[left]))
+while left < right:
+    if arr[right] - arr[left] >= 0:
+        right -= 1
+    else:
+        left += 1
 
-    if j <= i:
-        break
-
-    ans = min(ans, abs(arr[j] + arr[i]))
+    ans = min(ans, abs(arr[right] + arr[left]))
 
 print(ans)
