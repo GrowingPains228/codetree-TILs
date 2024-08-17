@@ -1,21 +1,22 @@
-AXIS_SIZE = 1000000
+MAX_X = 1000000
 n, k = map(int, input().split())
 
-# prexible_Sum 을 구한다.
-prexible_sum = [0] * (AXIS_SIZE + 1)
+line_list = [0] * (MAX_X+1)
+input_Max_x = 0
 for _ in range(n):
-    value, x = tuple(map(int, input().split()))
-    prexible_sum[x] += value
+    value, x = map(int, input().split())
+    line_list[x] += value
+    input_Max_x = max(input_Max_x, x)
 
-for i in range(1, AXIS_SIZE+1):
-    prexible_sum[i] += prexible_sum[i-1]
-
+j = 0
 ans = 0
-if k >= AXIS_SIZE/2:
-    ans = prexible_sum[AXIS_SIZE]
-else:
-    ans = prexible_sum[k]
-    for c in range(k+1, AXIS_SIZE+1-k):
-        ans = max(ans, prexible_sum[c+k] - prexible_sum[c-k-1])
+sum_val = 0
+for i in range(input_Max_x+1):
+    while j+1 <= input_Max_x and j <= i + 2*k:
+        sum_val += line_list[j]
+        j += 1
+
+    ans = max(ans, sum_val)
+    sum_val -= line_list[i]
 
 print(ans)
