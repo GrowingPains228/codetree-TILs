@@ -1,18 +1,20 @@
+def count_pairs_with_sum_less_than_k(arr, k):
+    arr.sort()
+    left, right = 0, len(arr) - 1
+    count = 0
+    
+    while left < right:
+        if arr[left] + arr[right] <= k:
+            count += (right - left)
+            left += 1
+        else :
+            right -= 1
+    
+    return count
+
+
 n, k = map(int, input().split())
+arr = [int(input()) for _ in range(n)]
 
-arr = [0] + [int(input()) for _ in range(n)]
-arr.sort()
-ans = 0
-j = n-1
-
-for i in range(n, 1, -1):
-    if arr[i] > k:
-        continue
-
-    while j-1 >= 1 and (arr[i] + arr[j] > k or j >= i):
-        j -= 1
-
-    if arr[i] + arr[j] <= k:
-        ans += j # j 앞에 있는 모든 원소들이 모두 가능하다!
-
-print(ans)
+result = count_pairs_with_sum_less_than_k(arr, k)
+print(result)
