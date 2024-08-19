@@ -57,4 +57,4 @@ for i in range(1, length):
     if inSectionMap[arr[i]] == 0:
         inSectionSet.remove(arr[i])
 
-print(ans)
+print(ans if ans != sys.maxsize else -1)
