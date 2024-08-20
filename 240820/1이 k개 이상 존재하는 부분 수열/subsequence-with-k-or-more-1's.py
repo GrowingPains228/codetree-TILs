@@ -1,5 +1,5 @@
 import sys
-n ,k = map(int, input().split())
+n,k = map(int, input().split())
 arr = [0] + list(map(int, input().split()))
 
 j = 0
@@ -17,4 +17,4 @@ for i in range(1, n+1):
     if arr[i] == 1:
         countingCnt -= 1
 
-print(ans)
+print(ans if ans != sys.maxsize else -1)
