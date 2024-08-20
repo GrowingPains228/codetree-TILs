@@ -1,24 +1,16 @@
+# Hashmap으로 풀면 정말 빠르지만, 문제에서 풀라고 했던 "이진 탐색"으로 풀자!
 n, m = map(int, input().split())
 arr = list(map(int, input().split()))
+arrDict = dict()
+for i in range(n):
+    arrDict[arr[i]] = i+1
 
 
-def find_target(target):
-    left, right = 0, n-1
-    while left <= right:
-        mid = (left + right) // 2
-
-        if arr[mid] == target:
-            return mid+1
-
-        if arr[mid] > target:
-            right = mid - 1
-        else:
-            left = mid + 1
-
-    return -1
+def find_target_by_Hashmap(target):
+    return arrDict.get(target, -1)
 
 
 for _ in range(m):
     num = int(input())
-    order = find_target(num)
+    order = find_target_by_Hashmap(num)
     print(order)
