@@ -1,5 +1,7 @@
 n,m = map(int, input().split())
 vertexList = list(map(int, input().split()))
+vertexList.sort()
+
 
 def lower_bound(arr, target):
     left, right = 0, n-1
