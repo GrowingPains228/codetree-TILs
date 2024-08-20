@@ -19,7 +19,7 @@ def lower_bound(arr, target):
 
 for elem in targetList:
     min_idx = lower_bound(arr, elem)
-    if arr[min_idx] == elem:
+    if min_idx <= n-1 and arr[min_idx] == elem:
         print(min_idx+1)
     else:
         print(-1)
