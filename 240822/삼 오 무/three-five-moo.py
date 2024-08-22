@@ -3,7 +3,7 @@ INT_MAX = sys.maxsize
 
 n = int(input())
 
-def get_num_of_number(mid):
+def get_num_of_numbers(mid):
     # moo의 수를 세어준다.
     moo_cnt = mid//3 + mid//5 - mid//15
 
