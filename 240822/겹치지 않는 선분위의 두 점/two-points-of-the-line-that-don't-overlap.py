@@ -10,12 +10,14 @@ def is_possible(min_dist):
     (recent_dot, _) = lines[0]
     for i in range(m):
         a, b = lines[i]
-        d = b - a
+
+        # 1차적으로 첫번째 점을 먼저 찍는다.
         # a 위치에 점이 설치되는지 유무 확인
-        if a - recent_dot >= min_dist:
-            recent_dot = a
+        if b - recent_dot >= min_dist:
+            recent_dot = max(a, recent_dot + min_dist)
             cnt += 1
 
+        d = b - recent_dot
         if d >= min_dist:
             cnt += d // min_dist
             recent_dot = b - d % min_dist
