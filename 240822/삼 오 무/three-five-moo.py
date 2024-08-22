@@ -1,5 +1,5 @@
 n = int(input())
-MAX_RANGE = 10**9
+MAX_RANGE = n * 2
 
 
 def isPossible(target):
@@ -22,9 +22,10 @@ while left <= right:
         ans = mid
         break
 
-    if order < n:
-        left = mid + 1
-    else:
+    if order >= n:
         right = mid - 1
+    else:
+        left = mid + 1
+
 
 print(ans)
