@@ -1,31 +1,29 @@
+import sys
+INT_MAX = sys.maxsize
+
 n = int(input())
-MAX_RANGE = n * 2
 
+def get_num_of_number(mid):
+    # moo의 수를 세어준다.
+    moo_cnt = mid//3 + mid//5 - mid//15
 
-def isPossible(target):
-    if target%3 == 0 or target%5 == 0:
-        return False
+    # 전체 수(mid)에서 moo의 수를 배면
+    # 서로 다른 수의 개수 == 몇번째 수
+    return mid - moo_cnt
 
-    return True
+# 이 문제에서는
+# [1~K]까지 적혀있는 서로 다른 수의 개수가
+# N이상인 경우 중 가능한 K의 최솟값을 구하자
+left = 1
+right = INT_MAX
+min_num = INT_MAX
 
-
-def CalculateNumOrder(target):
-    return target - target//3 - target//5 + target//(3*5)
-
-
-ans = 0
-left, right = 1, MAX_RANGE
 while left <= right:
     mid = (left + right)//2
-    order = CalculateNumOrder(mid)
-    if isPossible(mid) and order == n:
-        ans = mid
-        break
-
-    if order >= n:
+    if get_num_of_numbers(mid) >= n:
         right = mid - 1
+        min_num = min(min_num, mid)
     else:
         left = mid + 1
 
-
-print(ans)
+print(min_num)
