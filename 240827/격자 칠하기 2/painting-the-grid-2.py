@@ -17,6 +17,19 @@ def CanBeAnswer(value):
     return n*n // 2 <= value
 
 
+def DFS(r, c, diff):
+    if visited[r][c]:
+        return 0
+
+    visited[r][c] = True
+    count = 1
+    for dr, dc in zip(drs, dcs):
+        nr, nc = r + dr, c + dc
+        if InRange(nr, nc) and Movable(r, c, nr, nc, diff):
+            count += DFS(nr, nc, diff)
+    return count
+
+
 def BFS(r, c, diff):
     dq = list()
     dq.append((r, c))
@@ -38,13 +51,13 @@ def is_possible(diff):
         for j in range(n):
             visited[i][j] = False
 
-    cnt_colors = 0
     for r in range(n):
         for c in range(n):
             if not visited[r][c]:
-                cnt_colors = max(cnt_colors, BFS(r,c, diff))
+                if CanBeAnswer(DFS(r, c, diff)):
+                    return True
 
-    return CanBeAnswer(cnt_colors)
+    return False
 
 
 left, right = 0, MAX_DIFF
