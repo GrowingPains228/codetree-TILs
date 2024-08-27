@@ -47,7 +47,7 @@ def is_possible(diff):
     return CanBeAnswer(cnt_colors)
 
 
-left, right = 1, MAX_DIFF
+left, right = 0, MAX_DIFF
 ans = MAX_DIFF
 while left <= right:
     mid = (left + right)//2
