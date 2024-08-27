@@ -1,35 +1,35 @@
-N, T = map(int, input().split())
-arr = [int(input()) for _ in range(N)]
+import heapq
+n, t_max = tuple(map(int, input().split()))
+d = [int(input()) for _ in range(n)]
 
 
-def Is_Possible(max_cnt):
-    global N, T
-    timeList = [0] * (T+1)
-    cnt = 0
-    idx = 0
-    for i in range(T+1):
-        if timeList[i] != 0:
-            cnt -= timeList[i]
-            timeList[i] = 0
+def is_possible(k):
+    pq = []
+    for i in range(k):
+        heapq.heappush(pq, d[i])
 
-        while cnt < max_cnt and idx < N:
-            if i + arr[idx] > T:
-                return False
+    for i in range(k, n):
+        cur_time = heapq.heappop(pq)
 
-            timeList[i + arr[idx]] += 1
-            idx += 1
-            cnt += 1
+        heapq.heappush(pq, cur_time + d[i])
 
-    return idx == N and cnt == 0
+    end_time = 0
+    while pq:
+        end_time = max(end_time, heapq.heappop(pq))
 
-# 시간 복잡도 : TlogN
-left, right = 1, N
-ans = N
+    return end_time <= t_max
+
+
+left = 1
+right = n
+ans = n
+
 while left <= right:
-    mid = (left + right)//2
-    if Is_Possible(mid):
-        ans = min(ans, mid)
+    mid = (left + right) // 2
+    if is_possible(mid):
         right = mid - 1
+        ans = min(ans, mid)
     else:
         left = mid + 1
+
 print(ans)
