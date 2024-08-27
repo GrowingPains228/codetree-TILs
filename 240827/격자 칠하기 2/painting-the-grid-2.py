@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(10000)
+
 # Parametric Search + BFS
 MAX_DIFF = 10**6
 n = int(input())
