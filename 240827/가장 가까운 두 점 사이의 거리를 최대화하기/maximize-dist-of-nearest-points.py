@@ -1,5 +1,5 @@
-MAX_DIST = 10**9
 n = int(input())
+MAX_DIST = 10**9
 lineList = [tuple(map(int, input().split())) for _ in range(n)]
 lineList.sort()
 
@@ -11,7 +11,7 @@ def Is_Possible(min_dist):
         if cur_x + min_dist > x2:
             return False
 
-        cur_x = cur_x if cur_x + min_dist < x1 else cur_x + min_dist
+        cur_x = x1 if cur_x + min_dist < x1 else cur_x + min_dist
 
     return True
 
