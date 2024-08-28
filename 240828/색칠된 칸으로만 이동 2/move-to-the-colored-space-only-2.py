@@ -1,4 +1,6 @@
 import sys
+sys.setrecursionlimit(10**4)
+
 MAX_NUM = 10**9
 # 입력
 m, n = tuple(map(int, input().split()))
@@ -36,11 +38,16 @@ def BFS(r, c, diff):
                 visited[nr][nc] = True
                 q.append((nr, nc))
 
-    for (br, bc) in blocks:
-        if not visited[br][bc]:
-            return False
 
-    return True
+def DFS(r, c, diff):
+    if visited[r][c]:
+        return
+
+    visited[r][c] = True
+    for dr, dc in zip(drs, dcs):
+        nr, nc = r + dr, c + dc
+        if In_Range(nr, nc) and Movable(r, c, nr, nc, diff):
+            DFS(nr, nc, diff)
 
 
 def IsPossible(diff):
@@ -50,7 +57,14 @@ def IsPossible(diff):
 
     # 색칠된 곳들 중 한곳에서 출발했을때, 모든 색칠한 블럭이 True면 모두 도달한 것임.
     r, c = blocks[0]
-    return BFS(r, c, diff)
+    #BFS(r, c, diff)
+    DFS(r, c, diff)
+
+    for (br, bc) in blocks:
+        if not visited[br][bc]:
+            return False
+
+    return True
 
 
 left, right = 0, MAX_NUM
