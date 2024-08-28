@@ -1,4 +1,4 @@
-MAX_NUM = 10*9
+MAX_NUM = 10**9
 n, k = tuple(map(int, input().split()))
 dot_list = [int(input()) for _ in range(n)]
 dot_list.sort()
