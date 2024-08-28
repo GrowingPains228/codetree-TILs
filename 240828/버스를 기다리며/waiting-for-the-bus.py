@@ -9,13 +9,12 @@ def Is_Possible(time):
     # 버스마다 기다리는 시간은 = time
     for i in range(m):
         people = 0
-        if idx >= n:
-            continue
-
         firstGetOnTime = timeLine[idx]
         while people < c and timeLine[idx] - firstGetOnTime <= time:
             people += 1
             idx += 1
+            if idx >= n:
+                return True
 
     return idx == n
 
