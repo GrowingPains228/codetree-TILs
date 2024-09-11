@@ -4,26 +4,28 @@ people = list(map(int, input().split()))
 verse = list(map(int, input().split()))
 
 
-def Get_time(position):
-    time = 0
-    for i in range(n):
-        newTime = abs(position - people[i])/verse[i]
-        time = max(time, newTime)
-    return time
+def is_Possible(time):
+    max_x1 = people[0] - verse[0] * time
+    min_x2 = people[0] + verse[0] * time
+    for i in range(1, n):
+        x1 = people[i] - verse[i] * time
+        x2 = people[i] + verse[i] * time
+
+        max_x1 = max(max_x1, x1)
+        min_x2 = min(min_x2, x2)
+
+    return max_x1 <= min_x2
 
 
-left, right = 1.0, 10**9
-epsilon = 1e-7
-while right - left > epsilon :
-    mid1 = left + (right - left) / 3
-    mid2 = right - (right - left) / 3
+left, right = 0, 1e9
+ans = 1e9
 
-    time1 = Get_time(mid1)
-    time2 = Get_time(mid2)
-
-    if time1 > time2:
-        left = mid1
+for _ in range(1000):
+    mid = (left + right) / 2
+    if is_Possible(mid):
+        right = mid
+        ans = min(ans, mid)
     else:
-        right = mid2
+        left = mid
 
-print(f"{Get_time((left + right)/2):.4f}")
+print(f"{ans:.4f}")
