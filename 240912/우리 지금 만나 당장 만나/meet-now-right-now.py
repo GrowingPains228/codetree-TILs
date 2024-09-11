@@ -15,13 +15,15 @@ def Get_time(position):
 left, right = 1.0, 10**9
 epsilon = 1e-7
 while right - left > epsilon :
-    mid = (left + right) / 2
-    mid_left = (left + mid) / 2
-    mid_right = (mid + right) / 2
+    mid1 = left + (right - left) / 3
+    mid2 = right - (right - left) / 3
 
-    if Get_time(mid_left) > Get_time(mid_right):
-        left = mid_left
+    time1 = Get_time(mid1)
+    time2 = Get_time(mid2)
+
+    if time1 > time2:
+        left = mid1
     else:
-        right = mid_right
+        right = mid2
 
-print(f"{Get_time((left+right)/2):.4f}")
+print(f"{Get_time((left + right)/2):.4f}")
