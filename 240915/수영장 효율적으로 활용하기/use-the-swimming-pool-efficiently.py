@@ -15,8 +15,8 @@ def is_possible(mid):
     return idx == n
 
 
-left, right = 1, MaxTime
-ans = MaxTime
+left, right = 1, 10**9
+ans = 10**9
 while left <= right:
     mid = (left + right) // 2
     if is_possible(mid):
