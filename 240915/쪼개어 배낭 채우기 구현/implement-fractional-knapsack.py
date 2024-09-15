@@ -1,22 +1,19 @@
 n, m = map(int, input().split())
-value_list = list()
-weight = 0
-ans_value = 0
+jewels = [
+    tuple(map(int, input().split()))
+    for _ in range(n)
+]
+ans = 0
 
-# 세팅
-for i in range(n):
-    w, v = map(int, input().split())
-    value_list.append((v/w, w, v))
+# 가치/ 무게가 내림차순이 되도록 정렬
+jewels.sort(key=lambda x: -x[1]/x[0])
 
-value_list.sort(reverse=True)
-
-for i in range(n):
-    (value, w, v) = value_list[i]
-    if weight + w > m:
-        ans_value += value * (m - weight)
-        break
+for w, v in jewels:
+    if m >= w:
+        m -= w
+        ans += v
     else:
-        weight += w
-        ans_value += v
+        ans += m * v/w
+        break
 
-print(f"{ans_value:0.3f}")
+print(f"{ans:.3f}")
