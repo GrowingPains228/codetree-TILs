@@ -6,10 +6,9 @@ ans = -sys.maxsize
 cur_Sum = 0
 for i in range(n):  
     if cur_Sum + nums[i] < 0:
-        cur_Sum = 0
-        ans = max(ans, nums[i])
+        cur_Sum = nums[i]
     else:
         cur_Sum += nums[i]
-        ans = max(ans, cur_Sum)
+    ans = max(ans, cur_Sum)
 
 print(ans)
