@@ -1,9 +1,23 @@
-myCoins = [2, 5]
-cost = int(input())
-
+import sys
+target = int(input())
+coinList = [5,2]
 ans = 0
-for coin in myCoins[::-1]:
-    ans += cost//coin
-    cost %= coin
 
-print(ans if cost == 0 else -1)
+def is_impossible(num):
+    return num < 5 and num % 2 != 0
+
+
+if is_impossible(target):
+    print(-1)
+    sys.exit()
+
+
+for coin in coinList:
+    if is_impossible(target%coin):
+        ans += target//coin - 1
+        target = target%coin + coin
+    else:
+        ans += target//coin
+        target %= coin
+
+print(ans)
