@@ -1,23 +1,11 @@
-import sys
-target = int(input())
-coinList = [5,2]
-ans = 0
+MAX_NUM = 10**6
 
-def is_impossible(num):
-    return num < 5 and num % 2 != 0
+n = int(input())
+ans = MAX_NUM
 
+for i in range(0, MAX_NUM + 1):
+    remainder = n - i*5
+    if remainder >= 0 and remainder % 2 == 0:
+        ans = min(ans, i + remainder//2)
 
-if is_impossible(target):
-    print(-1)
-    sys.exit()
-
-
-for coin in coinList:
-    if is_impossible(target%coin):
-        ans += target//coin - 1
-        target = target%coin + coin
-    else:
-        ans += target//coin
-        target %= coin
-
-print(ans)
+print(ans if ans != MAX_NUM else -1)
