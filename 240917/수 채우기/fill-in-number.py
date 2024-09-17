@@ -6,4 +6,4 @@ for coin in myCoins[::-1]:
     ans += cost//coin
     cost %= coin
 
-print(ans)
+print(ans if cost == 0 else -1)
