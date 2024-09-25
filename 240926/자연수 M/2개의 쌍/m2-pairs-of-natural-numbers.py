@@ -16,10 +16,9 @@ startIdx = 0
 endIdx = n-1
 ans = 0
 
-while startIdx <= endIdx:
+while startIdx < endIdx:
     num1, num2 = nums[startIdx], nums[endIdx]
     ans = max(ans, num1 + num2)
-    
     numCountDic[num1] -= 1
     numCountDic[num2] -= 1
 
@@ -28,5 +27,8 @@ while startIdx <= endIdx:
     
     if numCountDic[num2] == 0:
         endIdx -= 1
+
+if startIdx == endIdx:
+    ans = max(ans, nums[startIdx] + nums[endIdx])
 
 print(ans)
