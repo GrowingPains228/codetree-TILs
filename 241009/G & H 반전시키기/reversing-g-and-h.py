@@ -2,22 +2,15 @@ n = int(input())
 string = input()
 goalstring = input()
 
-ansList = 0 
+ans = 0
+mismatched = False
 
-startIdx = 0
-endIdx = 0
-countOn = False
 for i in range(n):
-    if string[i] == goalstring[i]:
-        if countOn:
-            ansList += 1
-            countOn = False
-        continue
-
-    if i == n-1 and string[i] != goalstring[i] :
-        ansList += 1
-        break
-    
-    countOn = True
-
-print(ansList)
+    if string[i] != goalstring[i]:
+        if not mismatched:
+            mismatched = True
+            ans += 1
+    else:
+        mismatched = False
+        
+print(ans)
